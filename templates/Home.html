@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Monitor</title>
+    <link rel="stylesheet" href="static/App.css">
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo-title-container">
+            <!-- <img src="Images/logo-transparent.png" alt="Health App Logo" id="logo"> -->
+            <h1 id="health_monitor"><img src="Images/logo.png" id="nav_logo">SMART HEALTHCARE HUB</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Feature.html">Features</a></li>
+                <li><a href="Contact Us.html">Contact</a></li>
+                <li><a href="Chatbot.html">Chatbot</a></li>
+                <li><a href="About.html">About</a></li>
+            </ul>
+            <div id ="Login1" >
+                <div id="Login"><a href="Login.html"> Login </a>
+                </div>
+        </nav>
+    </header>
+    
+    <section id="home" class="hero">
+        
+        <h2>"Start Your Journey to Better Health"</h2>
+        <p>Gently monitor your health, set achievable goals, and let intelligent tools support your wellness journey.<br>
+            Discover insights tailored to your unique lifestyle.</p>
+        <img className="img" src="Images/Doctors.jpg" alt="Image Not Found">
+        <br><a href="Chatbot.html"><button onclick="showAlert()">Get Started</button></a>
+        <br>
+       </br>
+        <h2> "LEAD YOUR HEALTH LIKE A PRO"</h2>
+    </section>
+    
+    <section id="features">
+        <h2>Empower Your Wellness</h2>
+        <ul>
+            <li class="wellness-card"><a href="Monitor.html">Real-time Health Tracking</a></li>
+            <li class="wellness-card"><a href="App.html">AI-based Disease Prediction</a></li>
+            <li class="wellness-card"><a href="Food.html">Healthy Food Composition</a></li>
+        </ul>
+        
+    </section>
+    
+    <img src="Images/thank copy.png">
+    
+    <script src="App.js"></script>
+   
+       <footer id="contact">
+        <p>Contact us at:- <a href="mailto:support@healthmonitor.com">support@healthmonitor.com</a></p>
+    </footer>
+    <footer>
+        <p>&copy; 2025 Health Monitor. All rights reserved.</p></p>
+    </footer>   
+   
+</body>
+</html>
