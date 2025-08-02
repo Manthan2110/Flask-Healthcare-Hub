@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <link rel="stylesheet" href="static/App.css">
+</head>
+<body>
+    <header>
+        <h1>Heart Disease Prediction</h1>
+        <nav>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Feature.html">Features</a></li>
+                <li><a href="Monitor.html">Real-Time Tracking</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="prediction-heart">
+        <h2>Enter Patient Details</h2>
+        <!-- <p>
+            Heart disease remains one of the leading causes of death worldwide.<br>
+            Risk factors such as high cholesterol, elevated BP, and abnormal ECG results
+            can be early indicators. <br> This ML-powered tool evaluates multiple clinical parameters to 
+            assess the likelihood of heart-related conditions, helping users make proactive decisions for 
+            heart health.
+        </p> -->
+        <form id="heartForm" action="/heart" method="post">
+            <div class="metrics-grid-heart">
+                <div class="metric">
+                    <h3>Age</h3>
+                    <input type="number" step="1" name="age" placeholder="Enter Age" required></div>
+                <div class="metric">
+                    <h3>Gender</h3>
+                    <select name="sex" required>
+                        <option value="1"> Male </option>
+                        <option value="0"> Female </option>
+                    </select>
+                </div>
+                <div class="metric">
+                    <h3>Chest Pain Type</h3>
+                    <select name="cp" placeholder="Enter Chest Pain" required>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="metric">
+                    <h3>Blood Pressure</h3>
+                    <input type="number" name="blood_pressure" placeholder="Enter Blood Pressure" required>
+                </div>
+                <div class="metric">
+                    <h3>Cholesterol (chol)</h3>
+                    <input type="number" name="cholesterol" placeholder="Enter Cholesterol" required>
+                </div>
+                <div class="metric">
+                    <h3>Fasting Blood Sugar > 120 (fbs)</h3>
+                    <select name="fasting_blood_sugar" placeholder="Enter Blood Pressure" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="metric">
+                    <h3>Resting ECG (restecg)</h3>
+                    <input type="number" name="resting_ECG" required>
+                </div>
+                <div class="metric">
+                    <h3>Max Heart Rate (thalach)</h3>
+                    <input type="number" name="max_heart_rate" required>
+                </div>
+                <div class="metric">
+                    <h3>Exercise Angina (exang)</h3>
+                    <select name="exercise_angina" placeholder="Enter Exercise Angina" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="metric">
+                    <h3>Oldpeak</h3>
+                    <input type="number" name="oldpeak" step="0.01" placeholder="Enter Oldpeak" required>
+                </div>
+                <div class="metric"><h3>Slope</h3>
+                    <select name="slope" placeholder="Enter Slope" required>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+                <div class="metric">
+                    <h3>Major Vessels (ca)</h3>
+                    <input type="number" name="major_vessels" placeholder="Enter Major Vessels" required></div>
+                <div class="metric">
+                    <h3>Thalassemia (thal)</h3>
+                    <select name="thalassemia" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit">🩺 Predict Heart Disease</button>
+        </form>
+
+        <div id="result" class="result-box">Result Will be Displayed Here</div>
+    </section>
+
+    <script>
+        document.getElementById('heartForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form from reloading the page
+
+            const formData = new FormData(this);
+            const data = {
+                age: parseFloat(formData.get("age")),
+                sex: parseInt(formData.get("sex")),
+                cp: parseInt(formData.get("cp")),
+                trestbps: parseFloat(formData.get("trestbps")),
+                chol: parseFloat(formData.get("chol")),
+                fbs: parseInt(formData.get("fbs")),
+                restecg: parseInt(formData.get("restecg")),
+                thalach: parseFloat(formData.get("thalach")),
+                exang: parseInt(formData.get("exang")),
+                oldpeak: parseFloat(formData.get("oldpeak")),
+                slope: parseInt(formData.get("slope")),
+                ca: parseInt(formData.get("ca")),
+                thal: parseInt(formData.get("thal"))
+            };
+
+            fetch("heart", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.prediction !== undefined) {
+                    document.getElementById("result").innerHTML = `
+                        <strong>Prediction:</strong> ${result.prediction === 1 ? "💔 Heart Disease Detected" : "✅ No Heart Disease"}<br>
+                        <strong>Recommendation:</strong> ${result.recommendation}
+                    `;
+                } else {
+                    document.getElementById("result").innerHTML = "Error: Could not get a prediction.";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                document.getElementById("result").innerHTML = "Something went wrong.";
+            });
+        });
+    </script>
+
+</body>
+</html>
