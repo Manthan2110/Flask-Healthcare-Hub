@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction</title>
+    <link rel="stylesheet" href="App.css">
+</head>
+<body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    
+    <header>
+        <nav>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Feature.html">Features</a></li>
+                <li><a href="Monitor.html">Real-Time Tracking</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="features">
+        <h2>Choose Your Health Analysis</h2>
+        <img src="Images/Scan.jpg" class="avatar" alt="Healthcare Professional">
+        
+        <div class="features-grid">
+            <div class="feature-box">
+                <h3><a href="predict">Infectious Disease Prediction</a></h3>
+            </div>
+            <div class="feature-box">
+                <h3><a href="diabetes">Diabetes Prediction</a></h3>
+            </div>
+            <div class="feature-box">
+                <h3><a href="heart">Cardiac Health Analysis</a></h3>
+            </div>
+            <!-- <div class="feature-box">
+                <h3><a href="parkinson">Parkinson's Predictions</a></h3>
+            </div> -->
+            <div class="feature-box">
+                <h3><a href="cancer">Breast Cancer Predictions</a></h3>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Health Monitor. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <script src="App.js"></script>
+</body>
+</html>
