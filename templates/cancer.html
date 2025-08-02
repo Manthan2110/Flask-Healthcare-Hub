@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Prediction</title>
+    <link rel="stylesheet" href="static/App.css">
+</head>
+<body>
+    <header>
+        <h1>Breast Cancer Prediction</h1>
+        <nav>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Feature.html">Features</a></li>
+                <li><a href="Monitor.html">Real-Time Tracking</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    </header>
+
+    <section id="prediction-cancer">
+        <h2>Enter Patient Details</h2>
+        <p>
+            Breast cancer is one of the most common cancers affecting women worldwide.<br> 
+            Early detection significantly increases the chances of successful treatment and survival.
+            This tool uses advanced machine learning algorithms to analyze clinical features and predict 
+            whether a breast tumor is likely Malignant (cancerous) or Benign (non-cancerous).
+        </p>
+        <form id="breastCancerForm" action="/cancer" method="post">
+            <div class="metrics-grid-cancer">
+
+                <div class="metric">
+                    <h3>Enter Worst Area</h3>
+                    <input type="number" step="0.01" name="worst_area" placeholder="Worst Area" required>
+                </div>
+
+                <div class="metric">
+                    <h3>Enter Mean Concavity</h3>
+                    <input type="number" step="0.00001" name="mean_concavity" placeholder="Mean Concavity" required>
+                </div>
+
+                <div class="metric">
+                    <h3>Enter Mean Radius</h3>
+                    <input type="number" step="0.01" name="mean_radius" placeholder="Mean Radius" required>
+                </div>
+
+                <div class="metric">
+                    <h3>Enter Mean Area</h3>
+                    <input type="number" step="0.01" name="mean_area" placeholder="Mean Area" required>
+                </div>
+
+                <div class="metric">
+                    <h3>Enter Worst Concave Points</h3>
+                    <input type="number" step="0.00001" name="worst_concave_points" placeholder="Worst Concave Points" required>
+                </div>
+
+                <div class="metric">
+                    <h3>Enter Worst Perimeter</h3>
+                    <input type="number" step="0.01" name="worst_perimeter" placeholder="Worst Perimeter" required>
+                </div>
+
+                <div class="metric">
+                    <h3>Enter Worst Concavity</h3>
+                    <input type="number" step="0.00001" name="worst_concavity" placeholder="Worst Concavity" required>
+                </div>
+
+                <div class="metric">
+                    <h3>Enter Area Error</h3>
+                    <input type="number" step="0.001" name="area_error" placeholder="Area Error" required>
+                </div>
+
+                <div class="metric">
+                    <h3>Enter Mean Concave Points</h3>
+                    <input type="number" step="0.00001" name="mean_concave_points" placeholder="Mean Concave Points" required>
+                </div>
+
+                <div class="metric">
+                    <h3>Enter Worst Radius</h3>
+                    <input type="number" step="0.01" name="worst_radius" placeholder="Worst Radius" required>
+                </div>
+
+                <div class="metric">
+                    <h3>Enter Mean Perimeter</h3>
+                    <input type="number" step="0.01" name="mean_perimeter" placeholder="Mean Perimeter" required>
+                </div>
+
+                <div class="metric">
+                    <h3>Enter Worst Compactness</h3>
+                    <input type="number" step="0.00001" name="worst_compactness" placeholder="Worst Compactness" required>
+                </div>
+
+            </div>
+
+            <button type="submit" id="calculateBtn">Predict Breast Cancer Result</button>
+        </form>
+
+        <div id="result" class="result-box"> Result Will be Display here</div>
+    </section>
+
+    <script>
+        const form = document.getElementById('breastCancerForm');
+        const resultBox = document.getElementById('result');
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+            const data = {
+                worst_area: parseFloat(formData.get('worst_area')),
+                mean_concavity: parseFloat(formData.get('mean_concavity')),
+                mean_radius: parseFloat(formData.get('mean_radius')),
+                mean_area: parseFloat(formData.get('mean_area')),
+                worst_concave_points: parseFloat(formData.get('worst_concave_points')),
+                worst_perimeter: parseFloat(formData.get('worst_perimeter')),
+                worst_concavity: parseFloat(formData.get('worst_concavity')),
+                area_error: parseFloat(formData.get('area_error')),
+                mean_concave_points: parseFloat(formData.get('mean_concave_points')),
+                worst_radius: parseFloat(formData.get('worst_radius')),
+                mean_perimeter: parseFloat(formData.get('mean_perimeter')),
+                worst_compactness: parseFloat(formData.get('worst_compactness'))
+            };
+
+            try {
+                const response = await fetch('/cancer', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                resultBox.innerHTML = `
+                    <h3>Diagnosis: ${result.prediction === 1 ? '✅ Benign' : '💀 Malignant'}</h3>
+                    <p><strong>Recommendation:</strong> ${result.recommendation}</p>
+                `;
+            } catch (error) {
+                console.error("Prediction failed:", error);
+                resultBox.innerHTML = "⚠️ Error fetching prediction.";
+            }
+        });
+    </script>
+
+
+</body>
+</html>
