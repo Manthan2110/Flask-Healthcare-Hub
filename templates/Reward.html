@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: auto;
+            padding: 0;
+            text-align: center;
+            justify-content: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(135deg, #4CAF50, #2E8B57);
+            padding: 15px 0;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        nav ul li {
+            position: relative;
+            justify-content: center;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 12px 20px;
+            padding-left: 0px;
+            transition: all 0.3s ease-in-out;
+            border-radius: 6px;
+            font-size: 16px;
+            display: inline-block;
+            transition: all 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        nav ul li::after {
+            content: '';
+            display: block;
+            width: 0%;
+            height: 3px;
+            background: white;
+            transition: width 0.3s ease-in-out;
+            margin: auto;
+        }
+
+        nav ul li:hover::after {
+            width: 100%;
+        }
+        .card {
+            max-width: 600px;
+            align-content: center;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .progress-container {
+            width: 100%;
+            background-color: #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #4CAF50;
+            width: 0%;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+        }
+        button {
+            padding: 8px 16px;
+            border: none;
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="Feature.html">Features</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+            <li><a href="Reward.html">Rewards</a></li>
+            <li><a href="About.html">About</a></li>
+        </ul>
+        <div id ="Login1" >
+            <div id="Login"><a href="Login.html"> Login </a>
+            </div> </div>
+    </nav>
+    <img src="/Images/ad copy.png">
+<h1>Your Rewards</h1>
+    <div class="card">
+        <p><strong>Points Earned:</strong> <span id="userPoints">450</span></p>
+        <div class="progress-container">
+            <div id="progressBar" class="progress-bar">45%</div>
+        </div>
+    </div>
+    <h2>Redeem Rewards</h2>
+    <div id="rewardsList"></div>
+    <script>
+        let userPoints = 450;
+        const rewards = [
+            { id: 1, name: "Free Health Checkup", points: 500 },
+            { id: 2, name: "Discount on Medicines", points: 300 },
+            { id: 3, name: "Gym Membership Discount", points: 700 }
+        ];
+
+        function updateUI() {
+            document.getElementById("userPoints").textContent = userPoints;
+            document.getElementById("progressBar").style.width = (userPoints / 1000) * 100 + "%";
+            document.getElementById("progressBar").textContent = Math.round((userPoints / 1000) * 100) + "%";
+            
+            const rewardsList = document.getElementById("rewardsList");
+            rewardsList.innerHTML = "";
+            rewards.forEach(reward => {
+                const rewardItem = document.createElement("div");
+                rewardItem.className = "card";
+                rewardItem.innerHTML = `
+                    <p>${reward.name} - ${reward.points} Points</p>
+                    <button onclick="redeemReward(${reward.points})" ${userPoints < reward.points ? "disabled" : ""}>Redeem</button>
+                `;
+                rewardsList.appendChild(rewardItem);
+            });
+        }
+
+        function redeemReward(points) {
+            if (userPoints >= points) {
+                userPoints -= points;
+                updateUI();
+            }
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>
