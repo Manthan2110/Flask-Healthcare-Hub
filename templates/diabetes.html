@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction</title>
+    <link rel="stylesheet" href="static/App.css">
+</head>
+<body>
+    <header>
+        <h1>Diabetes Prediction</h1>
+        <nav>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="About.html">About</a></li>
+                <li><a href="Feature.html">Features</a></li>
+                <li><a href="Monitor.html">Real-Time Tracking</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    </header>
+
+    <section id="prediction-diabetes">
+        <h2>Enter Patient Details</h2>
+        <p>
+            This tool uses machine learning to predict diabetes risk based on medical indicators.
+            Fill in the values below to test the result.
+        </p>
+        <form id="diabetesForm" action="/diabetes" method="post">
+            <div class="metrics-grid-diabetes">
+                <div class="metric">
+                    <h3>Enter No. of Pregnancies</h3>
+                    <input type="number" step="1" name="pregnancies" placeholder="Pregnancies" required>
+                </div>
+                <div class="metric">
+                    <h3>Enter Glucose Level</h3>
+                    <input type="number" step="1" name="glucose" placeholder="Glucose Level (mg/dL)" required>
+                </div>
+                <div class="metric">
+                    <h3>Enter Blood Pressure</h3>
+                    <input type="number" step="1" name="blood_pressure" placeholder="Blood Pressure (mm Hg)" required>
+                </div>
+                <div class="metric">
+                    <h3>Enter Skin Thickness</h3>
+                    <input type="number" step="1" name="skin_thickness" placeholder="Skin Thickness (mm)" required>
+                </div>
+                <div class="metric">
+                    <h3>Enter Insulin Level</h3>
+                    <input type="number" step="1" name="insulin" placeholder="Insulin Level (mu U/mL)" required>
+                </div>
+                <div class="metric">
+                    <h3>Enter Body Mass Index</h3>
+                    <input type="number" step="0.01" name="bmi" placeholder="Body Mass Index (BMI)" required>
+                </div>
+                <div class="metric">
+                    <h3>Enter Diabetes Pedigree Function</h3>
+                    <input type="number" step="0.0001" name="dpf" placeholder="Diabetes Pedigree Function" required>
+                </div>
+                <div class="metric">
+                    <h3>Enter Age</h3>
+                    <input type="number" step="1" name="age" placeholder="Age (years)" required>
+                </div>
+            </div>
+            <button type="submit" id="calculateBtn">🩺 Predict Diabetes Result</button>
+        </form>
+
+        <div id="result" class="result-box"> Result Will be Display here</div>
+    </section>
+
+    <script>
+    document.getElementById('diabetesForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent form from reloading the page
+
+        const formData = new FormData(this);
+        const data = {
+            pregnancies: parseInt(formData.get("pregnancies")),
+            glucose: parseInt(formData.get("glucose")),
+            blood_pressure: parseFloat(formData.get("blood_pressure")),
+            skin_thickness: parseFloat(formData.get("skin_thickness")),
+            insulin: parseFloat(formData.get("insulin")),
+            bmi: parseFloat(formData.get("bmi")),
+            dpf: parseFloat(formData.get("dpf")),
+            age: parseInt(formData.get("age"))
+        };
+
+        fetch("diabetes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.prediction !== undefined) {
+                document.getElementById("result").innerHTML = `
+                    <strong>Prediction:</strong> ${result.prediction === 1 ? "Diabetic" : "Not Diabetic"}<br>
+                    <strong>Recommendation:</strong> ${result.recommendation}
+                `;
+            } else {
+                document.getElementById("result").innerHTML = "Error: Could not get a prediction.";
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            document.getElementById("result").innerHTML = "Something went wrong.";
+        });
+    });
+</script>
+
+
+</body>
+</html>
