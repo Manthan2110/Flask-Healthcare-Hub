@@ -59,39 +59,72 @@ This project answers a critical question:
 ---
 ## 📂 Project Structure
 flask-healthcare-hub/
+
 │
+
 ├── templates/              # HTML Templates for UI Pages
+
 │   ├── index.html          # Homepage
+
 │   ├── chatbot.html        # AI Health Chatbot Page
+
 │   ├── cancer.html      # Disease Prediction Interface
+
 │   ├── monitor.html        # Vital Monitor (BMI, Age, etc.)
+
 │   ├── About.html        # Smart Diet Advisor Page
+
 │   ├── App.html        # Smart Diet Advisor Page
+
 │   ├── Contact.html        # Smart Diet Advisor Page
+
 │   ├── diabetes.html        # Smart Diet Advisor Page
+
 │   ├── Feature.html        # Smart Diet Advisor Page
+
 │   ├── Food.html        # Smart Diet Advisor Page
+
 │   ├── heart.html        # Smart Diet Advisor Page
+
 │   ├── Home.html        # Smart Diet Advisor Page
+
 │   ├── Login.html        # Smart Diet Advisor Page
+
 │   ├── Monitor.html        # Smart Diet Advisor Page
+
 │   ├── parkinson.html        # Smart Diet Advisor Page
+
 │   └── contact.html        # Contact Form Page
+
 │
+
 ├── static/                 # CSS and JS Files
+
 │   └── styles.css          # Custom Styles
+
 │   └── styles.js          # JS Styles
+
 │
+
 ├── models/                 # Pre-trained ML Model Files (.pkl)
+
 │   ├── diabetes_model.pkl
+
 │   ├── heart_disease_model.pkl
+
 │   ├── breast_cancer_model
+
 │   ├── parkinsons_cancer_model
+
 │   ├── Random_forest_model
+
 │   └── cancer_model.pkl
 │
+
 ├── app.py                  # Main Flask Application Script
+
 ├── utils.py                # Utility Functions (e.g., preprocessing, model loading)
+
 └── requirements.txt        # Python Dependencies
 
 
