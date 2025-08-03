@@ -23,9 +23,9 @@ This project answers a critical question:
 
 ## 🚀 Key Features
 
-| Feature                     | Description                                                                                                                |
-|----------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| 🧑‍⚕️ **AI Health Chatbot** | Talks like a real doctor. Gives advice, prescriptions, and comfort in natural language.                                    |
+| Feature                      | Description                                                                                                                |
+|------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| 🧑‍⚕️ **AI Health Chatbot**    | Talks like a real doctor. Gives advice, prescriptions, and comfort in natural language.                                    |
 | 🧪 **Disease Predictor**    | Supports early prediction of **Diabetes**, **Heart Disease**, **Cancer**, and **Viral Illnesses** using trained ML models. |
 | 📊 **24x7 Vital Monitor**   | Calculates BMI and gives instant body fitness feedback from basic metrics (height, weight, age).                           |
 | 🥗 **Smart Diet Advisor**   | Recommends personalized food plans based on health goals and conditions.                                                   |
@@ -61,39 +61,39 @@ This project answers a critical question:
 flask-healthcare-hub/
 
 │
-├── templates/              # HTML Templates for UI Pages<br>
-│   ├── index.html          # Homepage
-│   ├── chatbot.html        # AI Health Chatbot Page
-│   ├── cancer.html      # Disease Prediction Interface
-│   ├── monitor.html        # Vital Monitor (BMI, Age, etc.)
-│   ├── About.html        # Smart Diet Advisor Page
-│   ├── App.html        # Smart Diet Advisor Page
-│   ├── Contact.html        # Smart Diet Advisor Page
-│   ├── diabetes.html        # Smart Diet Advisor Page
-│   ├── Feature.html        # Smart Diet Advisor Page
-│   ├── Food.html        # Smart Diet Advisor Page
-│   ├── heart.html        # Smart Diet Advisor Page
-│   ├── Home.html        # Smart Diet Advisor Page
-│   ├── Login.html        # Smart Diet Advisor Page
-│   ├── Monitor.html        # Smart Diet Advisor Page
-│   ├── parkinson.html        # Smart Diet Advisor Page
-│   └── contact.html        # Contact Form Page
-│
-├── static/                 # CSS and JS Files
-│   └── styles.css          # Custom Styles
-│   └── styles.js          # JS Styles
-│
-├── models/                 # Pre-trained ML Model Files (.pkl)
-│   ├── diabetes_model.pkl
-│   ├── heart_disease_model.pkl
-│   ├── breast_cancer_model
-│   ├── parkinsons_cancer_model
-│   ├── Random_forest_model
-│   └── cancer_model.pkl
-│
-├── app.py                  # Main Flask Application Script
-├── utils.py                # Utility Functions (e.g., preprocessing, model loading)
-└── requirements.txt        # Python Dependencies
+├── templates/              # HTML Templates for UI Pages <br>
+│   ├── index.html          # Homepage <br>
+│   ├── chatbot.html        # AI Health Chatbot Page <br> 
+│   ├── cancer.html      # Disease Prediction Interface <br>
+│   ├── monitor.html        # Vital Monitor (BMI, Age, etc.) <br>
+│   ├── About.html        # Smart Diet Advisor Page <br>
+│   ├── App.html        # Smart Diet Advisor Page <br>
+│   ├── Contact.html        # Smart Diet Advisor Page <br>
+│   ├── diabetes.html        # Smart Diet Advisor Page <br>
+│   ├── Feature.html        # Smart Diet Advisor Page <br>
+│   ├── Food.html        # Smart Diet Advisor Page <br>
+│   ├── heart.html        # Smart Diet Advisor Page <br>
+│   ├── Home.html        # Smart Diet Advisor Page <br>
+│   ├── Login.html        # Smart Diet Advisor Page <br>
+│   ├── Monitor.html        # Smart Diet Advisor Page <br>
+│   ├── parkinson.html        # Smart Diet Advisor Page <br>
+│   └── contact.html        # Contact Form Page <br>
+│<br> 
+├── static/                 # CSS and JS Files <br> 
+│   └── styles.css          # Custom Styles <br> 
+│   └── styles.js          # JS Styles <br>
+│ <br>
+├── models/                 # Pre-trained ML Model Files (.pkl) <br>
+│   ├── diabetes_model.pkl <br>
+│   ├── heart_disease_model.pkl <br>
+│   ├── breast_cancer_model <br>
+│   ├── parkinsons_cancer_model <br>
+│   ├── Random_forest_model <br>
+│   └── cancer_model.pkl <br>
+│ <br>
+├── app.py                  # Main Flask Application Script <br>
+├── utils.py                # Utility Functions (e.g., preprocessing, model loading) <br>
+└── requirements.txt        # Python Dependencies <br>
 
 
 ---
