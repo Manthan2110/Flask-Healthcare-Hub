@@ -59,7 +59,6 @@ This project answers a critical question:
 ---
 ## 📂 Project Structure
 flask-healthcare-hub/
-
 │
 ├── templates/              # HTML Templates for UI Pages <br>
 │   ├── index.html          <br>
