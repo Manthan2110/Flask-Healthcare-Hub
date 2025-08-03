@@ -62,26 +62,26 @@ flask-healthcare-hub/
 
 │
 ├── templates/              # HTML Templates for UI Pages <br>
-│   ├── index.html          # Homepage <br>
-│   ├── chatbot.html        # AI Health Chatbot Page <br> 
-│   ├── cancer.html      # Disease Prediction Interface <br>
-│   ├── monitor.html        # Vital Monitor (BMI, Age, etc.) <br>
-│   ├── About.html        # Smart Diet Advisor Page <br>
-│   ├── App.html        # Smart Diet Advisor Page <br>
-│   ├── Contact.html        # Smart Diet Advisor Page <br>
-│   ├── diabetes.html        # Smart Diet Advisor Page <br>
-│   ├── Feature.html        # Smart Diet Advisor Page <br>
-│   ├── Food.html        # Smart Diet Advisor Page <br>
-│   ├── heart.html        # Smart Diet Advisor Page <br>
-│   ├── Home.html        # Smart Diet Advisor Page <br>
-│   ├── Login.html        # Smart Diet Advisor Page <br>
-│   ├── Monitor.html        # Smart Diet Advisor Page <br>
-│   ├── parkinson.html        # Smart Diet Advisor Page <br>
-│   └── contact.html        # Contact Form Page <br>
+│   ├── index.html          <br>
+│   ├── chatbot.html         <br> 
+│   ├── cancer.html       <br>
+│   ├── monitor.html        <br>
+│   ├── About.html         <br>
+│   ├── App.html        <br>
+│   ├── Contact.html         <br>
+│   ├── diabetes.html         <br>
+│   ├── Feature.html         <br>
+│   ├── Food.html         <br>
+│   ├── heart.html         <br>
+│   ├── Home.html        <br>
+│   ├── Login.html         <br>
+│   ├── Monitor.html       <br>
+│   ├── parkinson.html         <br>
+│   └── contact.html        <br>
 │<br> 
 ├── static/                 # CSS and JS Files <br> 
-│   └── styles.css          # Custom Styles <br> 
-│   └── styles.js          # JS Styles <br>
+│   └── styles.css           <br> 
+│   └── styles.js          <br>
 │ <br>
 ├── models/                 # Pre-trained ML Model Files (.pkl) <br>
 │   ├── diabetes_model.pkl <br>
@@ -92,7 +92,7 @@ flask-healthcare-hub/
 │   └── cancer_model.pkl <br>
 │ <br>
 ├── app.py                  # Main Flask Application Script <br>
-├── utils.py                # Utility Functions (e.g., preprocessing, model loading) <br>
+├── utils.py                <br>
 └── requirements.txt        # Python Dependencies <br>
 
 
