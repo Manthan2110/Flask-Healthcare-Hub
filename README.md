@@ -58,7 +58,7 @@ This project answers a critical question:
 
 ---
 ## 📂 Project Structure
-flask-healthcare-hub/
+flask-healthcare-hub/     <br>
 │
 ├── templates/              # HTML Templates for UI Pages <br>
 │   ├── index.html          <br>
