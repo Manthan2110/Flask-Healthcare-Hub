@@ -23,7 +23,7 @@ This project answers a critical question:
 ---
 
 ## 🚀 Key Features
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 | Feature                             | Description                                                                                                                |
 |-------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | 🧑‍⚕️ **AI Health Chatbot**           | Talks like a real doctor. Gives advice, prescriptions, and comfort in natural language.                                    |
@@ -34,7 +34,7 @@ This project answers a critical question:
 | 📞 **Contact Us Section**          | Let users reach out for support, queries, or follow-up.                                                                    |
 | 🧭 **Navigation Bar**              | Fully integrated navbar with **Home**, **Features**, **Chatbot**, **Contact**, and **About Us** pages for smooth browsing. |
 | 🔐 **User Authentication**         | Simple and secure login system for personalized access (if enabled).                                                       |
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 ---
 
