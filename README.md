@@ -1,13 +1,14 @@
 # 🏥 Flask-Based Healthcare Hub 🧬
 
 Welcome to your intelligent health companion!  
-This **Flask-powered web app** brings together predictive machine learning, conversational AI, and real-time health tools — all in one seamless medical assistant platform.
+This **Flask-powered web app** unifies predictive machine learning, medical image analysis, and conversational AI into one seamless **AI Healthcare Assistant** platform.
 
 ---
 
 ## 🌐 Web App Overview
 
-An all-in-one healthcare solution where AI meets empathy. Diagnose. Advise. Monitor. Guide.
+An all-in-one healthcare solution where AI meets empathy.
+Diagnose. Advise. Monitor. Guide.
 <img width="1860" height="897" alt="image" src="https://github.com/user-attachments/assets/f22eef1e-531c-4b2c-8403-020521c13dcd" />
 
 ---
@@ -22,27 +23,33 @@ This project answers a critical question:
 ---
 
 ## 🚀 Key Features
-
-| Feature                      | Description                                                                                                                |
-|------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| 🧑‍⚕️ **AI Health Chatbot**    | Talks like a real doctor. Gives advice, prescriptions, and comfort in natural language.                                    |
-| 🧪 **Disease Predictor**    | Supports early prediction of **Diabetes**, **Heart Disease**, **Cancer**, and **Viral Illnesses** using trained ML models. |
-| 📊 **24x7 Vital Monitor**   | Calculates BMI and gives instant body fitness feedback from basic metrics (height, weight, age).                           |
-| 🥗 **Smart Diet Advisor**   | Recommends personalized food plans based on health goals and conditions.                                                   |
-| 📞 **Contact Us Section**   | Let users reach out for support, queries, or follow-up.                                                                    |
-| 🧭 **Navigation Bar**       | Fully integrated navbar with **Home**, **Features**, **Chatbot**, **Contact**, and **About Us** pages for smooth browsing. |
-| 🔐 **User Authentication**  | Simple and secure login system for personalized access (if enabled).                                                       |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Feature                             | Description                                                                                                                |
+|-------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| 🧑‍⚕️ **AI Health Chatbot**           | Talks like a real doctor. Gives advice, prescriptions, and comfort in natural language.                                    |
+| 🧪 **Disease Predictor**           | Supports early prediction of **Diabetes**, **Heart Disease**, **Cancer**, and **Viral Illnesses** using trained ML models. |
+| 📊 **24x7 Vital Monitor**          | Calculates BMI and gives instant body fitness feedback from basic metrics (height, weight, age).                           |
+| 🥗 **Smart Diet Advisor**          | Recommends personalized food plans based on health goals and conditions.                                                   |
+| 🧬  **Symptoms-Based Predictor**   | Recommends personalized food plans based on health goals and conditions.                                                   |
+| 📞 **Contact Us Section**          | Let users reach out for support, queries, or follow-up.                                                                    |
+| 🧭 **Navigation Bar**              | Fully integrated navbar with **Home**, **Features**, **Chatbot**, **Contact**, and **About Us** pages for smooth browsing. |
+| 🔐 **User Authentication**         | Simple and secure login system for personalized access (if enabled).                                                       |
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ---
 
 ## 🦠 Diseases Detected
 
-| Disease            | Technique Used                      |
-|--------------------|-------------------------------------|
-| 🩸 **Diabetes**     | Random Forest / Logistic Regression |
-| 💓 **Heart Disease**| Logistic Regression / Decision Tree |
-| 🧬 **Cancer**       | SVM with clinical parameters        |
-| 🦠 **Viral Illness**| Symptom-based classification model  |
+| Disease                 | Technique Used                                                             |
+|-------------------------|----------------------------------------------------------------------------|
+| 🩸 **Diabetes**        | Random Forest / Logistic Regression                                        |
+| 💓 **Heart Disease**   | Logistic Regression / Decision Tree                                        |
+| 🧬 **Cancer**          | SVM with clinical parameters                                               |
+| 🦠 **Viral Illness**   | Symptom-based classification model                                         |
+| 🧠 **Parkinson’s**     | Random Forest & feature-based classification                               |
+| 🩻  **Pneumonia**      | CNN model trained on chest X-ray dataset                                   |
+| 🩹  **Skin Cancer**    | CNN model (dermatology images)                                             |
+| 🤒 **Symptoms-Based**  | NLP + ML hybrid model for disease prediction with description + treatment  |
 
 ---
 
@@ -54,7 +61,7 @@ This project answers a critical question:
 | **Backend**     | Flask (Python)                                           |
 | **ML Libraries**| scikit-learn, pandas, NumPy, pickle                      |
 | **IDE**         | Jupyter Notebook & VS Code                               |
-| **Deployment**  | Localhost (Flask) or [can be deployed to Render/Heroku]  |
+| **Deployment**  | Localhost (Flask) → Render/Heroku/AWS (future-ready)  |
 
 ---
 ## 📂 Project Structure
@@ -75,7 +82,9 @@ flask-healthcare-hub/     <br>
 │   ├── Home.html        <br>
 │   ├── Login.html         <br>
 │   ├── Monitor.html       <br>
-│   ├── parkinson.html         <br>
+│   ├── parkinson.html       <br>
+│   ├── skin_cancer.html     <br>
+│   ├── Lungs.html         <br>
 │   └── contact.html        <br>
 │<br> 
 ├── static/                 # CSS and JS Files <br> 
@@ -89,6 +98,8 @@ flask-healthcare-hub/     <br>
 │   ├── parkinsons_cancer_model <br>
 │   ├── Random_forest_model <br>
 │   └── cancer_model.pkl <br>
+│   └── skin_cancer_cnn_model.h5 <br>
+│   └── vgg_unfrized.h5 <br>
 │ <br>
 ├── app.py                  # Main Flask Application Script <br>
 ├── utils.py                <br>
@@ -102,7 +113,6 @@ flask-healthcare-hub/     <br>
 To expand the scope and impact of the **Flask-Based Healthcare Hub**, the following improvements are planned:  
 
 - 🧠 **Deep Learning Models**  
-  - Skin Cancer Detection using CNNs on dermatology image datasets.  
   - Brain Tumor Classification using MRI scans with pre-trained architectures like ResNet / VGG16.  
 
 - 📷 **Medical Image Upload & Analysis**  
@@ -161,18 +171,6 @@ Open your browser and navigate to: http://localhost:5000
 👤: "I have a cold and mild headache. What should I do?"  
 🤖: "It might be a viral infection. Take rest, drink warm fluids, and consult a doctor if fever persists."
 
----
-
-## 🧠 Machine Learning Models
-
-- Trained using **Random Forest**, **SVM**, and **Logistic Regression**
-- Feature selection and normalization applied
-- Outputs binary classification (0 = No Disease, 1 = Disease)
-- 🧪 Built using:
-    - Evaluation Metrics: Accuracy, Precision, Recall
-    - train_test_split
-    - Standard Scaling (StandardScaler)
-    - 
 ---
 
 ## 🛠️ Tech Stack
