@@ -49,6 +49,7 @@ This project answers a critical question:
 | 🧠 **Parkinson’s**     | Random Forest & feature-based classification                               |
 | 🩻  **Pneumonia**      | CNN model trained on chest X-ray dataset                                   |
 | 🩹  **Skin Cancer**    | CNN model (dermatology images)                                             |
+| 🫀  **Liver Dusease**  | Random Forest with 7 important features                                    |
 | 🤒 **Symptoms-Based**  | NLP + ML hybrid model for disease prediction with description + treatment  |
 
 ---
@@ -85,6 +86,7 @@ flask-healthcare-hub/     <br>
 │   ├── parkinson.html       <br>
 │   ├── skin_cancer.html     <br>
 │   ├── Lungs.html         <br>
+│   ├── liver.html         <br>
 │   └── contact.html        <br>
 │<br> 
 ├── static/                 # CSS and JS Files <br> 
@@ -119,7 +121,7 @@ To expand the scope and impact of the **Flask-Based Healthcare Hub**, the follow
   Allow users to upload X-rays, MRIs, or skin images for real-time AI-powered diagnosis.  
 
 - 🧬 **Advanced Disease Coverage**  
-  Extend ML models to cover more conditions like Liver Disease, Kidney Disease, Pneumonia, Alzheimer’s, etc.  
+  Extend ML models to cover more conditions like Kidney Disease, Alzheimer’s, etc.  
 
 - 📡 **Cloud Deployment**  
   Deploy on scalable platforms (AWS, Render, Heroku) with integrated APIs for remote access.  
