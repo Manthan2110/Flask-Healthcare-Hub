@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Food Guide - Smart Healthcare Hub</title>
+    <link rel="stylesheet" href="static/App.css">
+    <link rel="stylesheet" href="static/food-categories.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('static/Images/food.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 60px 20px;  /* Reduced padding for better proportion */
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            color: #f0f0f0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Category filter functionality
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const foodCategories = document.querySelectorAll('.food-category');
+            const filterPills = document.querySelectorAll('.filter-pill');
+
+            function showCategory(categoryId) {
+                foodCategories.forEach(category => {
+                    if (categoryId === 'all' || category.id === categoryId) {
+                        category.style.display = 'block';
+                        category.style.animation = 'fadeIn 0.6s ease-out';
+                    } else {
+                        category.style.display = 'none';
+                    }
+                });
+            }
+
+            // Initial state - show all categories
+            showCategory('all');
+
+            // Category button functionality
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const categoryId = this.getAttribute('data-category');
+                    
+                    // Update active state of buttons
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show selected category
+                    showCategory(categoryId);
+
+                    // Log for debugging
+                    console.log('Selected category:', categoryId);
+                });
+            });
+
+            // Diet filter functionality
+            filterPills.forEach(pill => {
+                pill.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const activeFilters = Array.from(document.querySelectorAll('.filter-pill.active'))
+                        .map(el => el.getAttribute('data-filter'));
+                    
+                    // Filter food cards
+                    document.querySelectorAll('.food-card').forEach(card => {
+                        const tags = Array.from(card.querySelectorAll('.tag'))
+                            .map(tag => tag.classList[1]);
+                            
+                        if (activeFilters.length === 0 || activeFilters.some(filter => tags.includes(filter))) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo-title-container">
+            <h1 id="health_monitor">
+            <img src="static/Images/logo.png" id="nav_logo">
+            <span class="title-text">SMART HEALTHCARE HUB</span>
+            </h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/chatbot">Chatbot</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <div id ="Login1" >
+                <div id="Login"><a href="/login"> Login </a>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Discover Healthy & Delicious Food</h1>
+            <p>Explore our curated collection of nutritious meals for a healthier lifestyle</p>
+        </div>
+    </section>
+
+    <div class="category-nav">
+        <button class="category-btn active" data-category="all">All Categories</button>
+        <button class="category-btn" data-category="indian-foods">Indian</button>
+        <button class="category-btn" data-category="snacks-foods">Healthy Snacks</button>
+        <button class="category-btn" data-category="breakfast-foods">Breakfast</button>
+        <button class="category-btn" data-category="beverages-foods">Beverages</button>
+        <button class="category-btn" data-category="desserts-foods">Desserts</button>
+        <button class="category-btn" data-category="diabetic-foods">Diabetic-Friendly</button>
+        <button class="category-btn" data-category="weight-loss-foods">Weight-Loss</button>
+    </div>
+
+    <div class="quick-filters">
+        <span class="filter-pill" data-filter="vegetarian">Vegetarian</span>
+        <span class="filter-pill" data-filter="protein-rich">High Protein</span>
+        <span class="filter-pill" data-filter="low-calorie">Low Calorie</span>
+        <span class="filter-pill" data-filter="gluten-free">Gluten Free</span>
+    </div>
+
+    <div class="food-category" id="indian-foods">
+        <div class="category-header">
+            <h2><i class="fas fa-utensils"></i> Nutritious Indian Foods</h2>
+            <p class="category-description">Traditional Indian dishes packed with nutrients and flavors</p>
+        </div>
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Moong Dal</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>High in protein and easy to digest; great for energy and immunity.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 120 kcal</span>
+                        <span><i class="fas fa-dumbbell"></i> 24g protein</span>
+                        <span><i class="fas fa-leaf"></i> Fiber-rich</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Protein-Rich</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-bread-slice"></i>
+                    <h3>Bajra Roti</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Rich in fiber and magnesium; supports heart health and digestion.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 90 kcal</span>
+                        <span><i class="fas fa-heart"></i> Heart-healthy</span>
+                        <span><i class="fas fa-leaf"></i> High-fiber</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag gluten-free">Gluten-Free</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-cheese"></i>
+                    <h3>Palak Paneer</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Loaded with calcium, iron, and protein; boosts bone and blood health.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 180 kcal</span>
+                        <span><i class="fas fa-bone"></i> High calcium</span>
+                        <span><i class="fas fa-dumbbell"></i> 15g protein</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Protein-Rich</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Rajma (Kidney Beans)</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Excellent plant-based protein and fiber; supports metabolism.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 150 kcal</span>
+                        <span><i class="fas fa-dumbbell"></i> 18g protein</span>
+                        <span><i class="fas fa-leaf"></i> High-fiber</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Protein-Rich</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-glass-water"></i>
+                    <h3>Buttermilk (Chaas)</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Hydrating and rich in probiotics; aids digestion naturally.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 40 kcal</span>
+                        <span><i class="fas fa-bacteria"></i> Probiotic</span>
+                        <span><i class="fas fa-droplet"></i> Hydrating</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-apple-whole"></i>
+                    <h3>Seasonal Fruits</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Boost immunity with natural vitamins and antioxidants from papaya, apple, and pomegranate.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> Varies</span>
+                        <span><i class="fas fa-shield-virus"></i> Immunity</span>
+                        <span><i class="fas fa-leaf"></i> Antioxidants</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="food-category" id="breakfast-foods">
+        <div class="category-header">
+            <h2><i class="fas fa-sun"></i> Healthy Breakfast Options</h2>
+            <p class="category-description">Start your day with nutritious and energizing meals</p>
+        </div>
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-bowl-food"></i>
+                    <h3>Vegetable Oats Porridge</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>High in fiber and low in calories; keeps you full longer.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 180 kcal</span>
+                        <span><i class="fas fa-leaf"></i> High-fiber</span>
+                        <span><i class="fas fa-carrot"></i> Vegetables</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-bread-slice"></i>
+                    <h3>Besan Cheela</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Protein-rich and gluten-free; a healthy pancake alternative.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 150 kcal</span>
+                        <span><i class="fas fa-dumbbell"></i> 8g protein</span>
+                        <span><i class="fas fa-wheat-awn"></i> Gluten-free</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Protein-Rich</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Idli with Sambar</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Steamed, low-fat, and packed with protein; ideal for breakfast.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 165 kcal</span>
+                        <span><i class="fas fa-dumbbell"></i> 6g protein</span>
+                        <span><i class="fas fa-leaf"></i> Low-fat</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-bowl-food"></i>
+                    <h3>Quinoa Upma</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>High in protein and fiber; a nutritious twist on traditional upma.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 200 kcal</span>
+                        <span><i class="fas fa-dumbbell"></i> 7g protein</span>
+                        <span><i class="fas fa-leaf"></i> High-fiber</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag gluten-free">Gluten-Free</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-blender"></i>
+                    <h3>Fruit Smoothie Bowl</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Refreshing and nutrient-dense; perfect for a quick breakfast.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 220 kcal</span>
+                        <span><i class="fas fa-shield-virus"></i> Vitamins</span>
+                        <span><i class="fas fa-apple-whole"></i> Fresh-fruits</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-bread-slice"></i>
+                    <h3>Whole Wheat Paratha & Yogurt</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Balanced meal with complex carbs and probiotics.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 250 kcal</span>
+                        <span><i class="fas fa-bacteria"></i> Probiotics</span>
+                        <span><i class="fas fa-wheat-awn"></i> Whole-grain</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Protein-Rich</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="food-category" id="snacks-foods">
+        <div class="category-header">
+            <h2><i class="fas fa-cookie-bite"></i> Healthy Snacks</h2>
+            <p class="category-description">Nutritious options for mindful snacking</p>
+        </div>
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Roasted Chickpeas</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Crunchy, high in protein and fiber; a great low-fat snack.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 120 kcal</span>
+                        <span><i class="fas fa-dumbbell"></i> 6g protein</span>
+                        <span><i class="fas fa-leaf"></i> High-fiber</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Protein-Rich</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Foxnuts (Makhana)</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Low in calories and high in antioxidants; perfect for guilt-free snacking.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 85 kcal</span>
+                        <span><i class="fas fa-shield-virus"></i> Antioxidants</span>
+                        <span><i class="fas fa-leaf"></i> Low-fat</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-carrot"></i>
+                    <h3>Sweet Potato</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Rich in complex carbs, fiber, and Vitamin A.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 100 kcal</span>
+                        <span><i class="fas fa-shield-virus"></i> Vitamin A</span>
+                        <span><i class="fas fa-leaf"></i> Complex-carbs</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag gluten-free">Gluten-Free</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-apple-whole"></i>
+                    <h3>Fruit Chaat</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Mix of seasonal fruits; boosts energy and immunity.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 95 kcal</span>
+                        <span><i class="fas fa-shield-virus"></i> Vitamins</span>
+                        <span><i class="fas fa-leaf"></i> Fresh</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Nuts & Seeds Mix</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Packed with healthy fats, protein, and micronutrients.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 160 kcal</span>
+                        <span><i class="fas fa-dumbbell"></i> 6g protein</span>
+                        <span><i class="fas fa-heart"></i> Healthy-fats</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Protein-Rich</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-bread-slice"></i>
+                    <h3>Multigrain Crackers & Hummus</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Wholesome and high in protein; keeps you full longer.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 150 kcal</span>
+                        <span><i class="fas fa-dumbbell"></i> 5g protein</span>
+                        <span><i class="fas fa-leaf"></i> Fiber-rich</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Protein-Rich</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="food-category" id="beverages-foods">
+        <div class="category-header">
+            <h2><i class="fas fa-glass-water"></i> Healthy Beverages</h2>
+            <p class="category-description">Hydrating and nutritious drinks for wellness</p>
+        </div>
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-mug-hot"></i>
+                    <h3>Green Tea</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Rich in antioxidants; boosts metabolism and aids weight loss.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 0 kcal</span>
+                        <span><i class="fas fa-shield-virus"></i> Antioxidants</span>
+                        <span><i class="fas fa-bolt"></i> Metabolism</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Zero-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-glass-water"></i>
+                    <h3>Fresh Coconut Water</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Hydrating and rich in electrolytes; great for post-workout recovery.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 45 kcal</span>
+                        <span><i class="fas fa-bolt"></i> Electrolytes</span>
+                        <span><i class="fas fa-droplet"></i> Hydrating</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-mug-hot"></i>
+                    <h3>Lemon Ginger Tea</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Soothes digestion and boosts immunity; a refreshing drink.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 5 kcal</span>
+                        <span><i class="fas fa-shield-virus"></i> Immunity</span>
+                        <span><i class="fas fa-stomach"></i> Digestion</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Herbal Infusions</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Variety of herbs for relaxation and health benefits.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 0 kcal</span>
+                        <span><i class="fas fa-moon"></i> Relaxing</span>
+                        <span><i class="fas fa-heart"></i> Wellness</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Zero-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-blender"></i>
+                    <h3>Homemade Smoothies</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Blend of fruits, vegetables, and yogurt; nutritious and filling.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 150 kcal</span>
+                        <span><i class="fas fa-shield-virus"></i> Vitamins</span>
+                        <span><i class="fas fa-apple-whole"></i> Fresh-fruits</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Nutritious</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-glass-water"></i>
+                    <h3>Infused Water</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Water infused with fruits and herbs; hydrating and flavorful.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 0 kcal</span>
+                        <span><i class="fas fa-droplet"></i> Hydrating</span>
+                        <span><i class="fas fa-lemon"></i> Natural-flavor</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Zero-Calorie</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="food-category" id="desserts-foods">
+        <div class="category-header">
+            <h2><i class="fas fa-ice-cream"></i> Healthy Desserts</h2>
+            <p class="category-description">Guilt-free treats for your sweet cravings</p>
+        </div>
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-apple-whole"></i>
+                    <h3>Fruit Salad with Yogurt</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Refreshing and nutritious; a perfect guilt-free dessert.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 120 kcal</span>
+                        <span><i class="fas fa-shield-virus"></i> Vitamins</span>
+                        <span><i class="fas fa-bacteria"></i> Probiotics</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Chia Seed Pudding</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>High in fiber and omega-3; a healthy alternative to traditional puddings.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 150 kcal</span>
+                        <span><i class="fas fa-heart"></i> Omega-3</span>
+                        <span><i class="fas fa-leaf"></i> High-fiber</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag gluten-free">Gluten-Free</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-cookie"></i>
+                    <h3>Oats Cookies</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Whole grain goodness with natural sweetness; a healthy snack option.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 80 kcal</span>
+                        <span><i class="fas fa-wheat-awn"></i> Whole-grain</span>
+                        <span><i class="fas fa-leaf"></i> Fiber-rich</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-candy-cane"></i>
+                    <h3>Dark Chocolate Bites</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Rich in antioxidants; satisfies sweet cravings healthily.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 60 kcal</span>
+                        <span><i class="fas fa-shield-virus"></i> Antioxidants</span>
+                        <span><i class="fas fa-heart"></i> Heart-healthy</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-ice-cream"></i>
+                    <h3>Frozen Yogurt Bark</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>A cool treat made with yogurt and fruits; low in calories.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 90 kcal</span>
+                        <span><i class="fas fa-bacteria"></i> Probiotics</span>
+                        <span><i class="fas fa-apple-whole"></i> Fresh-fruits</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-bread-slice"></i>
+                    <h3>Homemade Granola Bars</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Nutritious and energy-boosting; perfect for on-the-go snacking.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 180 kcal</span>
+                        <span><i class="fas fa-bolt"></i> Energy</span>
+                        <span><i class="fas fa-seedling"></i> Nutrient-rich</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Protein-Rich</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="food-category" id="diabetic-foods">
+        <div class="category-header">
+            <h2><i class="fas fa-hand-holding-medical"></i> Diabetic-Friendly Meals</h2>
+            <p class="category-description">Low glycemic index meals for better blood sugar control</p>
+        </div>
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-bowl-food"></i>
+                    <h3>Oats Upma</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Low-GI food rich in fiber and ideal for blood sugar control.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 160 kcal</span>
+                        <span><i class="fas fa-chart-line"></i> Low-GI</span>
+                        <span><i class="fas fa-leaf"></i> High-fiber</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-GI</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-bowl-rice"></i>
+                    <h3>Lauki Chana Dal</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Low-calorie and diabetic-friendly protein-rich dish.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 140 kcal</span>
+                        <span><i class="fas fa-dumbbell"></i> 9g protein</span>
+                        <span><i class="fas fa-leaf"></i> Low-cal</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Protein-Rich</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-bread-slice"></i>
+                    <h3>Besan Chilla</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>High in protein and fiber, helps manage glucose levels.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 150 kcal</span>
+                        <span><i class="fas fa-dumbbell"></i> 8g protein</span>
+                        <span><i class="fas fa-chart-line"></i> Low-GI</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag gluten-free">Gluten-Free</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-carrot"></i>
+                    <h3>Vegetable Stir Fry</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Non-starchy veggies rich in antioxidants and fiber.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 120 kcal</span>
+                        <span><i class="fas fa-shield-virus"></i> Antioxidants</span>
+                        <span><i class="fas fa-leaf"></i> Low-carb</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-bowl-rice"></i>
+                    <h3>Brown Rice with Rajma</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Low GI combo of protein and complex carbs.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 280 kcal</span>
+                        <span><i class="fas fa-dumbbell"></i> 12g protein</span>
+                        <span><i class="fas fa-chart-line"></i> Low-GI</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Protein-Rich</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-cheese"></i>
+                    <h3>Low-fat Paneer Salad</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Protein-rich and keeps sugar levels stable.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 180 kcal</span>
+                        <span><i class="fas fa-dumbbell"></i> 15g protein</span>
+                        <span><i class="fas fa-leaf"></i> Low-fat</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Protein-Rich</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="food-category" id="weight-loss-foods">
+        <div class="category-header">
+            <h2><i class="fas fa-weight-scale"></i> Weight-Loss Friendly Foods</h2>
+            <p class="category-description">Low-calorie, nutrient-dense options for healthy weight management</p>
+        </div>
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Sprouts Salad</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Low-calorie and rich in protein; improves satiety.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 100 kcal</span>
+                        <span><i class="fas fa-dumbbell"></i> 7g protein</span>
+                        <span><i class="fas fa-leaf"></i> High-fiber</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-carrot"></i>
+                    <h3>Cucumber & Carrot Sticks</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>High in water, low in calories; perfect mid-day snack.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 30 kcal</span>
+                        <span><i class="fas fa-droplet"></i> Hydrating</span>
+                        <span><i class="fas fa-carrot"></i> Fresh-veggies</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-bowl-food"></i>
+                    <h3>Vegetable Soup</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Light yet filling; great way to increase fiber intake.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 80 kcal</span>
+                        <span><i class="fas fa-leaf"></i> High-fiber</span>
+                        <span><i class="fas fa-carrot"></i> Vegetables</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Steamed Idli</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Low-fat fermented food; easy to digest and filling.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 70 kcal</span>
+                        <span><i class="fas fa-bacteria"></i> Probiotic</span>
+                        <span><i class="fas fa-leaf"></i> Low-fat</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag low-calorie">Low-Calorie</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-bowl-rice"></i>
+                    <h3>Quinoa Bowl with Veggies</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Balanced meal with protein, fiber, and complex carbs.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 220 kcal</span>
+                        <span><i class="fas fa-dumbbell"></i> 8g protein</span>
+                        <span><i class="fas fa-leaf"></i> Balanced</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Protein-Rich</span>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="food-card-header">
+                    <i class="fas fa-apple-whole"></i>
+                    <h3>Apple with Peanut Butter</h3>
+                </div>
+                <div class="food-card-content">
+                    <p>Perfect blend of fiber, good fats, and natural sweetness.</p>
+                    <div class="nutrition-info">
+                        <span><i class="fas fa-fire"></i> 200 kcal</span>
+                        <span><i class="fas fa-heart"></i> Good-fats</span>
+                        <span><i class="fas fa-leaf"></i> High-fiber</span>
+                    </div>
+                </div>
+                <div class="food-card-footer">
+                    <span class="tag vegetarian">Vegetarian</span>
+                    <span class="tag protein-rich">Protein-Rich</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>&copy; 2025 Health Monitor. All rights reserved.</p>
+    </footer>
+</body>
+</html>
