@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction</title>
+    <link rel="stylesheet" href="static/App.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    
+    <header>
+        <div class="logo-title-container">
+            <h1 id="health_monitor">
+            <img src="static/Images/logo.png" id="nav_logo">
+            <span class="title-text">SMART HEALTHCARE HUB</span>
+            </h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/chatbot">Chatbot</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <div id ="Login1" >
+                <div id="Login"><a href="/login"> Login </a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="app-features">
+        <h2>Choose Your Health Analysis</h2>
+        <img src="static/Images/Scan.jpg" class="avatar" alt="Healthcare Professional">
+        
+        <div class="app-features-grid">
+            <div class="feature-box">
+                <i class="fas fa-stethoscope fa-3x" style="color: #0abbe8;"></i>
+                <h3><a href="/predict" style="color: #0abbe8;">Symptoms Based Prediction</a></h3>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-syringe fa-3x" style="color: #2ecc71;"></i>
+                <h3><a href="diabetes" style="color: #2ecc71;">Diabetes <br>Prediction</a></h3>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-heartbeat fa-3x" style="color: #e74c3c;"></i>
+                <h3><a href="heart" style="color: #e74c3c;">Cardiac Health Analysis</a></h3>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-brain fa-3x" style="color: #f1c40f;"></i>
+                <h3><a href="parkinson" style="color: #f1c40f;">Parkinson's <br>Predictions</a></h3>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-ribbon fa-3x" style="color: #9b59b6;"></i>
+                <h3><a href="cancer" style="color: #9b59b6;">Breast Cancer Detections</a></h3>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-kidney fa-3x" style="color: #2ecc71;"></i>
+                <h3><a href="kidney" style="color: #2ecc71;">Kideny Stone Detecion</a></h3>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-diagnoses fa-3x" style="color: #0abbe8;"></i>
+                <h3><a href="skin" style="color: #0abbe8;">Skin Cancer Analysis</a></h3>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-lungs fa-3x" style="color: #2ecc71;"></i>
+                <h3><a href="pneumonia" style="color: #2ecc71;">Lungs Infectious Detecion</a></h3>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-liver fa-3x" style="color: #2ecc71;"></i>
+                <h3><a href="liver" style="color: #2ecc71;">Liver Disease Prediction</a></h3>
+            </div>
+            <!-- <div class="feature-box">
+                <i class="fas fa-diagnoses fa-3x"></i>
+                <h3><a href="brain">Brain Tumor Prediction</a></h3>
+            </div> -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Health Monitor. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <script src="App.js"></script>
+</body>
+</html>
