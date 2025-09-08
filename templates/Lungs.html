@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pneumonia Detection</title>
+    <link rel="stylesheet" href="static/App.css">
+    <style>
+        #preview {
+            display: block;
+            margin: 20px auto;
+            max-width: 350px;
+            max-height: 300px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+        }
+        .result-box {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-title-container">
+            <h1 id="health_monitor">
+                <img src="static/Images/logo.png" id="nav_logo">
+                <span class="title-text">SMART HEALTHCARE HUB</span>
+            </h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/chatbot">Chatbot</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <div id="Login1">
+                <div id="Login"><a href="/login"> Login </a></div>
+            </div>
+        </nav>
+    </header>
+
+    <h1 style="color: green;">Pneumonia Detection</h1>
+    <section id="prediction-pneumonia">
+        <form id="pneumoniaForm" action="/pneumonia" method="post" enctype="multipart/form-data">
+            <h2>Upload Chest X-Ray</h2>
+            <p>
+                Pneumonia is a lung infection that can be life-threatening if untreated. <br>
+                It causes inflammation in the air sacs, which may fill with fluid. <br>
+                Early detection is key. This tool uses deep learning to analyze chest X-ray images and detect pneumonia risk.
+            </p>
+            <input type="file" name="file" id="file" accept="image/*" required><br><br><br><br>
+            <button type="submit">🫁 Predict Pneumonia</button>
+        </form>
+
+        <!-- Preview -->
+        <div id="preview-container">
+            <h3>Uploaded Image:</h3>
+            <img id="preview" src="" alt="Uploaded Image Preview" style="max-width:300px; display:none; border:1px solid #ccc; border-radius:10px; margin-top:10px;">
+        </div>
+
+        <div id="result" class="result-box">
+            <div class="result-content">
+                <div class="default-text">🫁 Result will be displayed here</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    const form = document.getElementById('pneumoniaForm');
+    const resultBox = document.getElementById('result');
+    const fileInput = document.getElementById('file');
+
+    // preview
+    fileInput.addEventListener("change", function(event) {
+        let file = event.target.files[0];
+        if (file) {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let preview = document.getElementById("preview");
+                preview.src = e.target.result;
+                preview.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // submit
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (!fileInput.files[0]) {
+            showError("Please select an image file first.");
+            return;
+        }
+        let formData = new FormData();
+        formData.append("file", fileInput.files[0]);
+
+        showLoadingState();
+
+        fetch("/pneumonia", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.prediction) {
+                showResult(result.prediction, result.recommendation);
+            } else if (result.error) {
+                showError(result.error);
+            } else {
+                showError("Error in prediction.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            showError("Something went wrong. Please try again.");
+        });
+    });
+
+    function showLoadingState() {
+        resultBox.className = 'loading';
+        resultBox.innerHTML = `
+            <div class="result-content">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">🩻 Analyzing chest X-ray...</div>
+            </div>
+        `;
+    }
+
+    function showResult(prediction, recommendation) {
+        const isPneumonia = prediction === "Pneumonia";
+        resultBox.className = isPneumonia ? 'positive fade-in' : 'negative fade-in';
+        resultBox.innerHTML = `
+            <div class="result-content">
+                <div class="prediction-status">
+                    <span class="status-icon">${isPneumonia ? '⚠️' : '✅'}</span>
+                    <strong>${prediction} Detected</strong>
+                </div>
+                <div class="recommendation">
+                    <div class="recommendation-title">🏥 Medical Recommendation:</div>
+                    <div>${recommendation}</div>
+                </div>
+            </div>
+        `;
+    }
+
+    function showError(message) {
+        resultBox.className = 'fade-in';
+        resultBox.style.background = 'linear-gradient(135deg, #e67e22 0%, #d35400 100%)';
+        resultBox.innerHTML = `
+            <div class="result-content">
+                <div class="prediction-status">
+                    <span class="status-icon">⚠️</span>
+                    <strong>Error</strong>
+                </div>
+                <div class="recommendation">
+                    <div>${message}</div>
+                </div>
+            </div>
+        `;
+    }
+    </script>
+</body>
+</html>
