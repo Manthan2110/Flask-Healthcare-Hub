@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Liver Disease Prediction</title>
+  <link rel="stylesheet" href="/static/App.css" />
+</head>
+<body>
+    <header>
+        <div class="logo-title-container">
+            <h1 id="health_monitor">
+            <img src="static/Images/logo.png" id="nav_logo">
+            <span class="title-text">SMART HEALTHCARE HUB</span>
+            </h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/chatbot">Chatbot</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <div id ="Login1" >
+                <div id="Login"><a href="/login"> Login </a>
+            </div>
+        </nav>
+    </header>
+
+    <h1 style="color: blue;">Breast Cancer Prediction</h1>
+    <section id="prediction-liver">
+        <h2>Enter Patient Details</h2>
+        <p>
+        The liver plays a vital role in keeping our body healthy by filtering toxins, aiding digestion, and storing essential nutrients.<br>
+        Liver diseases often develop silently and may not show symptoms in the early stages. Detecting them early can prevent serious complications<br> and improve treatment outcomes.
+        This tool uses machine learning to analyze routine medical test results and predict whether there are signs of liver disease. It helps provide an early indication, so you can take timely medical advice and care.
+        </p>
+        <form id="liverForm">
+            <div class="metrics-grid-liver">
+            <div class="metric">
+                <h3>Alkaline Phosphotase</h3>
+                <input type="number" name="Alkaline_Phosphotase" step="1" required />
+            </div>
+            <div class="metric">
+                <h3>Direct Bilirubin</h3>
+                <input type="number" name="Direct_Bilirubin" step="0.01" required />
+            </div>
+            <div class="metric">
+                <h3>Aspartate Aminotransferase</h3>
+                <input type="number" name="Aspartate_Aminotransferase" step="1" required />
+            </div>
+            <div class="metric">
+                <h3>Alamine Aminotransferase</h3>
+                <input type="number" name="Alamine_Aminotransferase" step="1" required />
+            </div>
+            <div class="metric">
+                <h3>Total Bilirubin</h3>
+                <input type="number" name="Total_Bilirubin" step="0.1" required />
+            </div>
+            <div class="metric">
+                <h3>Age</h3>
+                <input type="number" name="Age" step="1" required />
+            </div>
+            <div class="metric">
+                <h3>Total Proteins</h3>
+                <input type="number" name="Total_Protiens" step="0.01" required />
+            </div>
+            <!-- If you serve FULL model, also add:
+            <div class="metric"><h3>Gender</h3>
+                <select name="Gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                </select></div>
+            <div class="metric"><h3>Albumin</h3><input type="number" name="Albumin" step="0.01" /></div>
+            <div class="metric"><h3>A/G Ratio</h3><input type="number" name="Albumin_and_Globulin_Ratio" step="0.01" /></div>
+            -->
+            </div>
+            <button type="submit" id="calcBtn">🧪 Predict Disease</button>
+        </form>
+        <div id="result" class="result-box">
+            <div class="result-content">
+                <div class="default-text">
+                    🔬 Result will be displayed here
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const form = document.getElementById("liverForm");
+        const resultDiv = document.getElementById("result");
+
+        form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const fd = new FormData(form);
+        const data = Object.fromEntries(fd.entries());
+        showLoading();
+
+        fetch("liver", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+        })
+        .then(r => r.json())
+        .then(res => {
+            if (res.error) return showError(res.error);
+            showResult(res.prediction, res.probability, res.recommendation);
+        })
+        .catch(err => showError("Something went wrong. Please try again."));
+        });
+
+        function showLoading() {
+        resultDiv.className = 'loading';
+        resultDiv.innerHTML = `
+            <div class="result-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">🩺 Analyzing liver disease risk...</div>
+            </div>`;
+        }
+        function showResult(pred, prob, rec) {
+        const isPositive = pred === 1;
+        resultDiv.className = isPositive ? 'positive fade-in' : 'negative fade-in';
+        resultDiv.innerHTML = `
+            <div class="result-content">
+            <div class="prediction-status">
+                <span class="status-icon">${isPositive ? '⚠️' : '✅'}</span>
+                <strong>${isPositive ? 'Liver Disease Detected' : 'No Liver Disease Detected'}</strong>
+            </div>
+            <div class="recommendation">
+                <div class="recommendation-title">🏥 Recommendation:</div>
+                <div>${rec}</div>
+            </div>
+            </div>`;
+        }
+        function showError(message) {
+        resultDiv.className = 'fade-in';
+        resultDiv.style.background = 'linear-gradient(135deg, #e67e22 0%, #d35400 100%)';
+        resultDiv.innerHTML = `
+            <div class="result-content">
+            <div class="prediction-status"><span class="status-icon">⚠️</span><strong>Error</strong></div>
+            <div class="recommendation"><div>${message}</div></div>
+            </div>`;
+        }
+    </script>
+</body>
+</html>
