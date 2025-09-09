@@ -1,0 +1,330 @@
+/* Food Categories Styles */
+:root {
+    /* Category Colors */
+    --indian-color: #114ef6;
+    --snacks-color: #e67e22;
+    --breakfast-color: #2ecc71;
+    --beverages-color: #9b59b6;
+    --desserts-color: #e84393;
+    --diabetic-color: #00b894;
+    --weight-loss-color: #00cec9;
+
+    /* Tag Colors */
+    --vegetarian-color: #2ecc71;
+    --protein-rich-color: #3498db;
+    --low-calorie-color: #e67e22;
+    --gluten-free-color: #9b59b6;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../Images/healthy-food-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    text-align: center;
+    padding: 6rem 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Category Navigation */
+.category-nav {
+    background: var(--white);
+    padding: 1rem;
+    margin: -2rem auto 2rem;;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    max-width: 1200px;
+    border-radius: var(--radius);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.category-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Quick Filters */
+.quick-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.filter-pill {
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    background: var(--white);
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.filter-pill:hover {
+    transform: translateY(-2px);
+}
+
+.filter-pill.active {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+/* Food Categories */
+.food-category {
+    max-width: 1200px;
+    margin: 0 auto 4rem;
+    padding: 0 1rem;
+}
+
+.category-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.category-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: currentColor;
+    opacity: 0.3;
+}
+
+.category-header h2 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.category-description {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Category-specific header colors */
+#indian-foods .category-header { color: var(--indian-color); }
+#snacks-foods .category-header { color: var(--snacks-color); }
+#breakfast-foods .category-header { color: var(--breakfast-color); }
+#beverages-foods .category-header { color: var(--beverages-color); }
+#desserts-foods .category-header { color: var(--desserts-color); }
+#diabetic-foods .category-header { color: var(--diabetic-color); }
+#weight-loss-foods .category-header { color: var(--weight-loss-color); }
+
+/* Food Cards */
+.food-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.food-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.food-card-header {
+    padding: 1.5rem;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Category-specific header colors */
+#indian-foods .food-card-header { background: var(--indian-color); }
+#snacks-foods .food-card-header { background: var(--snacks-color); }
+#breakfast-foods .food-card-header { background: var(--breakfast-color); }
+#beverages-foods .food-card-header { background: var(--beverages-color); }
+#desserts-foods .food-card-header { background: var(--desserts-color); }
+#diabetic-foods .food-card-header { background: var(--diabetic-color); }
+#weight-loss-foods .food-card-header { background: var(--weight-loss-color); }
+
+.food-card-header i {
+    font-size: 1.5rem;
+}
+
+.food-card-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.food-card-content {
+    padding: 1.5rem;
+}
+
+.food-card-content p {
+    color: var(--text-light);
+    margin: 0 0 1rem 0;
+    line-height: 1.6;
+}
+
+.nutrition-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.nutrition-info span {
+    background: var(--bg-light);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.nutrition-info i {
+    color: currentColor;
+}
+
+.food-card-footer {
+    padding: 1rem 1.5rem;
+    background: var(--bg-light);
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--white);
+}
+
+.tag.vegetarian { background: var(--vegetarian-color); }
+.tag.protein-rich { background: var(--protein-rich-color); }
+.tag.low-calorie { background: var(--low-calorie-color); }
+.tag.gluten-free { background: var(--gluten-free-color); }
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.food-category {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .category-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .food-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .category-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .nutrition-info {
+        gap: 0.5rem;
+    }
+
+    .nutrition-info span {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .category-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .food-card-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .food-grid {
+        grid-template-columns: 1fr;
+        padding: 0.5rem;
+    }
+
+    .tag {
+        font-size: 0.8rem;
+    }
+}
