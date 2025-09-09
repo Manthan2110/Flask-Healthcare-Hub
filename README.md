@@ -90,8 +90,8 @@ flask-healthcare-hub/     <br>
 │   └── contact.html        <br>
 │<br> 
 ├── static/                 # CSS and JS Files <br> 
-│   └── styles.css           <br> 
-│   └── styles.js          <br>
+│   └── App.css           <br> 
+│   └── App.js          <br>
 │ <br>
 ├── models/                 # Pre-trained ML Model Files (.pkl) <br>
 │   ├── diabetes_model.pkl <br>
