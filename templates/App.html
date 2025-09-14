@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction - Smart Healthcare Hub</title>
+    <link rel="stylesheet" href="static/App.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    
+    <header>
+        <div class="logo-title-container">
+            <h1 id="health_monitor">
+                <img src="static/Images/logo.png" id="nav_logo" alt="Smart Healthcare Hub Logo">
+                <span class="title-text">SMART HEALTHCARE HUB</span>
+            </h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/chatbot">Chatbot</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <div id="Login1">
+                <div id="Login"><a href="/login">Login</a></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Advanced Disease Prediction & Analysis</h1>
+            <p>Empowering healthcare decisions with AI-driven disease prediction and comprehensive health analysis tools.</p>
+            <div class="hero-cta">
+                <a href="#app-features" class="cta-button">Explore Health Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <h3>10K+</h3>
+                <p>Active Users</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-diagnoses"></i>
+                <h3>98%</h3>
+                <p>Accuracy Rate</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-hospital-user"></i>
+                <h3>50K+</h3>
+                <p>Predictions Made</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-certificate"></i>
+                <h3>8+</h3>
+                <p>Disease Types</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="app-features" class="features-section">
+        <div class="section-header">
+            <h2>Advanced Health Analysis Tools</h2>
+            <p>Choose from our comprehensive suite of AI-powered health analysis services</p>
+        </div>
+
+        <div class="features-container">
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon-wrapper blue">
+                        <i class="fas fa-stethoscope fa-2x"></i>
+                    </div>
+                    <h3>Symptoms Analysis</h3>
+                    <p>Get instant disease predictions based on your symptoms</p>
+                    <a href="/predict" class="feature-link">Start Analysis <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-wrapper green">
+                        <i class="fas fa-syringe fa-2x"></i>
+                    </div>
+                    <h3>Diabetes Risk Assessment</h3>
+                    <p>Evaluate your diabetes risk with our advanced prediction model</p>
+                    <a href="diabetes" class="feature-link">Check Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-wrapper red">
+                        <i class="fas fa-heartbeat fa-2x"></i>
+                    </div>
+                    <h3>Heart Health Check</h3>
+                    <p>Comprehensive cardiac health analysis using AI</p>
+                    <a href="heart" class="feature-link">Analyze Heart Health <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-wrapper yellow">
+                        <i class="fas fa-brain fa-2x"></i>
+                    </div>
+                    <h3>Parkinson's Detection</h3>
+                    <p>Early detection of Parkinson's disease symptoms</p>
+                    <a href="parkinson" class="feature-link">Start Detection <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-wrapper purple">
+                        <i class="fas fa-ribbon fa-2x"></i>
+                    </div>
+                    <h3>Breast Cancer Screening</h3>
+                    <p>Advanced breast cancer detection and analysis</p>
+                    <a href="cancer" class="feature-link">Begin Screening <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-wrapper green">
+                        <i class="fas fa-vial fa-2x"></i>
+                    </div>
+                    <h3>Kidney Stone Analysis</h3>
+                    <p>Detect potential kidney stones using AI imaging</p>
+                    <a href="kidney" class="feature-link">Start Scan <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-wrapper blue">
+                        <i class="fas fa-diagnoses fa-2x"></i>
+                    </div>
+                    <h3>Skin Cancer Detection</h3>
+                    <p>AI-powered skin lesion analysis and cancer detection</p>
+                    <a href="skin" class="feature-link">Analyze Skin <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-wrapper green">
+                        <i class="fas fa-lungs fa-2x"></i>
+                    </div>
+                    <h3>Lung Health Check</h3>
+                    <p>Detect respiratory infections and lung conditions</p>
+                    <a href="pneumonia" class="feature-link">Check Lungs <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Take Control of Your Health?</h2>
+            <p>Start your journey towards better health with our AI-powered analysis tools</p>
+            <a href="/login" class="cta-button">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Smart Healthcare Hub</h3>
+                <p>Empowering healthcare decisions with advanced AI technology and comprehensive analysis tools.</p>
+                <div class="social-links">
+                    <a href="http://linkedin.com/in/manthanjadav" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="http://github.com/Manthan2110" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://manthan2110.github.io/Portfolio/" aria-label="Portfolio"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:manthanjadav746@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Health Services</h4>
+                <ul>
+                    <li><a href="/predict">Disease Prediction</a></li>
+                    <li><a href="/chatbot">AI Health Assistant</a></li>
+                    <li><a href="/monitor">Health Monitoring</a></li>
+                    <li><a href="/food">Diet Recommendations</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@smarthealthcarehub.com</li>
+                    <li><i class="fas fa-location-dot"></i> 123 Health Street, Medical District</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Smart Healthcare Hub. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/sitemap">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+
+            // Parallax effect for hero section
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent) {
+                heroContent.style.transform = `translateY(${scrollTop * 0.3}px)`;
+            }
+        });
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animate elements on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.feature-card, .stat-card, .section-header, .hero-content');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                
+                if (elementTop < window.innerHeight && elementBottom > 0) {
+                    element.classList.add('animate');
+                }
+            });
+        };
+
+        // Initialize counters for statistics
+        const animateValue = (obj, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.textContent = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // Animate statistics when they come into view
+        const observeStats = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statElements = entry.target.querySelectorAll('.stat-card h3');
+                    statElements.forEach(stat => {
+                        const finalValue = parseInt(stat.textContent);
+                        animateValue(stat, 0, finalValue, 2000);
+                    });
+                    // Unobserve after animation
+                    observeStats.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        // Feature card hover effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('hover');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('hover');
+            });
+        });
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe stats section
+            const statsSection = document.querySelector('.stats-section');
+            if (statsSection) {
+                observeStats.observe(statsSection);
+            }
+
+            // Initial animation check
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+
+    <script src="App.js"></script>
+</body>
+</html>
