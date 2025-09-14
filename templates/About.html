@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Smart Healthcare Hub</title>
+    <link rel="stylesheet" href="static/App.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* About Page Specific Styles */
+        .hero-about {
+            position: relative;
+            background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(30, 64, 175, 0.95)), url('static/Images/Ai_about.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: -4rem auto 0;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .mission-section {
+            background: #f8fafc;
+            padding: 8rem 0 4rem;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            align-items: center;
+        }
+
+        .mission-content h2 {
+            font-size: 2.5rem;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-content p {
+            color: #64748b;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .mission-image {
+            position: relative;
+        }
+
+        .mission-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .values-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #64748b;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .value-card {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: #2563eb;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-title {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .value-text {
+            color: #64748b;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .team-section {
+            background: #f8fafc;
+            padding: 6rem 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .team-social a {
+            color: #64748b;
+            transition: color 0.3s ease;
+        }
+
+        .team-social a:hover {
+            color: #2563eb;
+        }
+
+        .timeline-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: calc(50% - 1px);
+            width: 2px;
+            height: 100%;
+            background: #e2e8f0;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 2rem 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #2563eb;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -60px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -60px;
+        }
+
+        .timeline-year {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-text {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .modern-footer {
+            background: #1e293b;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ffffff;
+        }
+
+        .contact-info li {
+            display: flex;
+            color: #e2e8f0;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #2563eb;
+        }
+
+        @media (max-width: 1024px) {
+            .stats-grid, .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .mission-grid, .values-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+            }
+
+            .timeline-item:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin-left: 2rem;
+            }
+
+            .timeline-content::before {
+                left: -30px !important;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .stats-grid, .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .mission-content h2 {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-title-container">
+            <h1 id="health_monitor">
+                <img src="static/Images/logo.png" id="nav_logo">
+                <span class="title-text">SMART HEALTHCARE HUB</span>
+            </h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="features">Features</a></li>
+                <li><a href="contact">Contact</a></li>
+                <li><a href="chatbot">Chatbot</a></li>
+                <li><a href="about">About</a></li>
+            </ul>
+            <div id="Login1">
+                <div id="Login"><a href="/login"> Login </a></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-about">
+        <div class="hero-content">
+            <h1 class="hero-title">Revolutionizing Healthcare Through Innovation</h1>
+            <p class="hero-text">Combining artificial intelligence with medical expertise to create a future where quality healthcare is accessible to everyone, everywhere.</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <i class="fas fa-users stat-icon"></i>
+            <div class="stat-number">100K+</div>
+            <div class="stat-label">Active Users</div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-hospital-user stat-icon"></i>
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Healthcare Partners</div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-chart-line stat-icon"></i>
+            <div class="stat-number">95%</div>
+            <div class="stat-label">Accuracy Rate</div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-globe stat-icon"></i>
+            <div class="stat-number">30+</div>
+            <div class="stat-label">Countries Served</div>
+        </div>
+    </div>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="mission-grid">
+            <div class="mission-content">
+                <h2>Our Mission & Vision</h2>
+                <p>At Smart Healthcare Hub, we're dedicated to transforming healthcare delivery through innovative technology. Our mission is to make quality healthcare accessible, affordable, and personalized for everyone.</p>
+                <p>We envision a world where advanced AI-powered healthcare solutions work seamlessly with medical professionals to provide the best possible care for patients, regardless of their location or circumstances.</p>
+            </div>
+            <div class="mission-image">
+                <img src="static/Images/Ai-about-2.jpg" alt="Healthcare Innovation">
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="section-title">
+            <h2>Our Core Values</h2>
+            <p>The principles that guide us in our mission to revolutionize healthcare</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <i class="fas fa-heart value-icon"></i>
+                <h3 class="value-title">Patient-First Approach</h3>
+                <p class="value-text">Everything we do is focused on improving patient outcomes and experience.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-shield-alt value-icon"></i>
+                <h3 class="value-title">Privacy & Security</h3>
+                <p class="value-text">We maintain the highest standards of data protection and patient confidentiality.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-microscope value-icon"></i>
+                <h3 class="value-title">Innovation</h3>
+                <p class="value-text">Continuously pushing boundaries to develop cutting-edge healthcare solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="section-title">
+            <h2>Our Leadership Team</h2>
+            <p>Meet the experts behind Smart Healthcare Hub</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="static/Images/doctor.png" alt="Dr. James Wilson">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Dr. James Wilson</h3>
+                    <p class="team-role">Chief Medical Officer</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="static/Images/Doctors5.jpg" alt="Dr. Sarah Chen">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Dr. Sarah Chen</h3>
+                    <p class="team-role">AI Research Director</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="static/Images/Doctors4.jpg" alt="Dr. Michael Brown">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Dr. Michael Brown</h3>
+                    <p class="team-role">Head of Innovation</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="static/Images/Doctors6.jpg" alt="Dr. Emily Taylor">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Dr. Emily Taylor</h3>
+                    <p class="team-role">Clinical Director</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="section-title">
+            <h2>Our Journey</h2>
+            <p>Key milestones in our mission to transform healthcare</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2023</div>
+                    <h3 class="timeline-title">Platform Launch</h3>
+                    <p class="timeline-text">Launched our AI-powered healthcare platform with initial disease prediction capabilities.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2024</div>
+                    <h3 class="timeline-title">Global Expansion</h3>
+                    <p class="timeline-text">Expanded to 30+ countries and formed partnerships with leading healthcare institutions.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2025</div>
+                    <h3 class="timeline-title">Advanced AI Integration</h3>
+                    <p class="timeline-text">Achieved 95% accuracy in disease prediction through advanced machine learning algorithms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Footer -->
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>Smart Healthcare Hub combines AI technology with healthcare expertise to provide you with the best possible health monitoring and diagnostic solutions.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="features">Our Features</a></li>
+                    <li><a href="about">About Us</a></li>
+                    <li><a href="contact">Contact</a></li>
+                    <li><a href="privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Healthcare Ave, Medical District</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> support@healthmonitor.com</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="http://linkedin.com/in/manthanjadav" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="http://github.com/Manthan2110" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://manthan2110.github.io/Portfolio/" aria-label="Portfolio"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:manthanjadav746@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Smart Healthcare Hub. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/terms">Terms of Service</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/cookies">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
