@@ -3,45 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Features - Health Monitor</title>
-    <link rel="stylesheet" href="App.css">
+    <title>Smart Features - Healthcare Hub</title>
+    <link rel="stylesheet" href="static/App.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="Home.html">Home</a></li>
-            <li><a href="Feature.html">Features</a></li>
-            <li><a href="Contact.html">Contact</a></li>
-            <li><a href="Chatbot.html">Chatbot</a></li>
-            <li><a href="About.html">About</a></li>
-        </ul>
-        <div id ="Login1" >
-            <div id="Login"><a href="Login.html"> Login </a>
-            </div> </div>
-    </nav>
-    
-    <section id="features">
-        <h2>Key Features</h2>
-        <img src="Images/Features.jpg" class="avatar" alt="Doctor" class="circular-image"> 
-        <div class="feature-box">
-            <h3><a href="Monitor.html">24/7 Vital Monitoring</a></h3>
-            <p>Monitor your vitals in real-time with smart sensors.</p>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <header>
+        <div class="logo-title-container">
+            <h1 id="health_monitor">
+                <img src="static/Images/logo.png" id="nav_logo" alt="Smart Healthcare Hub Logo">
+                <span class="title-text">SMART HEALTHCARE HUB</span>
+            </h1>
         </div>
-        <div class="feature-box">
-            <h3><a href="App.html">Predictive Medical Assistant</a></h3>
-            <p>Use AI to predict diseases before symptoms escalate.</p>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/chatbot">Chatbot</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <div id="Login1">
+                <div id="Login"><a href="/login">Login</a></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="feature-hero">
+        <div class="hero-content">
+            <h1>Empowering Healthcare with Smart Technology</h1>
+            <p>Discover our comprehensive suite of AI-powered healthcare solutions designed to revolutionize patient care and medical diagnosis.</p>
+            <div class="hero-buttons">
+                <a href="#core-features" class="primary-button">Explore Features</a>
+                <a href="/contact" class="secondary-button">Contact Us</a>
+            </div>
         </div>
-        <div class="feature-box">
-            <h3><a href="Food.html">Smart Diet Advisor</a></h3>
-            <p>Analyze ingredients and build meals that match your health profile.</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">98%</span>
+                <span class="stat-label">Accuracy Rate</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Monitoring</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">10+</span>
+                <span class="stat-label">AI Models</span>
+            </div>
+                <div class="stat-item">
+                <span class="stat-number">7+</span>
+                <span class="stat-label">Diet Plans</span>
+            </div>
         </div>
     </section>
-    
-    <footer id="contact">
-        <p>Contact us at <a href="mailto:support@healthmonitor.com">support@healthmonitor.com</a></p>
+
+    <!-- Core Features Section -->
+    <section id="core-features" class="features-showcase">
+        <div class="section-header">
+            <h2>Core Features</h2>
+            <p>Experience healthcare reimagined with our cutting-edge features</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon blue">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h3>24/7 Vital Monitoring</h3>
+                <p>Advanced real-time monitoring of vital signs using smart sensors and AI analytics for comprehensive health tracking.</p>
+                <ul class="feature-benefits">
+                    <li><i class="fas fa-check"></i> Real-time vital tracking</li>
+                    <li><i class="fas fa-check"></i> Instant health alerts</li>
+                    <li><i class="fas fa-check"></i> Historical data analysis</li>
+                </ul>
+                <a href="/monitor" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon purple">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>AI Medical Assistant</h3>
+                <p>Smart disease prediction and diagnosis assistance powered by advanced machine learning algorithms.</p>
+                <ul class="feature-benefits">
+                    <li><i class="fas fa-check"></i> Early disease detection</li>
+                    <li><i class="fas fa-check"></i> Symptom analysis</li>
+                    <li><i class="fas fa-check"></i> Treatment recommendations</li>
+                </ul>
+                <a href="/" class="feature-link">Explore AI <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon green">
+                    <i class="fas fa-apple-alt"></i>
+                </div>
+                <h3>Smart Diet Advisor</h3>
+                <p>Personalized nutrition recommendations and meal planning based on your health profile and goals.</p>
+                <ul class="feature-benefits">
+                    <li><i class="fas fa-check"></i> Custom meal plans</li>
+                    <li><i class="fas fa-check"></i> Nutritional analysis</li>
+                    <li><i class="fas fa-check"></i> Diet tracking</li>
+                </ul>
+                <a href="/food" class="feature-link">Get Started <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="section-header">
+            <h2>Why Choose Smart Healthcare Hub?</h2>
+            <p>Experience the future of healthcare with our innovative platform</p>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="feature-card">
+                <i class="fas fa-shield-alt" style="color: #2563eb; font-size: 2.5rem;"></i>
+                <h3>Secure & Private</h3>
+                <p>Your health data is protected with military-grade encryption and strict privacy controls.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-bolt" style="color: #2563eb; font-size: 2.5rem;"></i>
+                <h3>Real-Time Analysis</h3>
+                <p>Get instant health insights and alerts through our advanced monitoring system.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-chart-line" style="color: #2563eb; font-size: 2.5rem;"></i>
+                <h3>Predictive Analytics</h3>
+                <p>Stay ahead of health issues with AI-powered predictive analysis.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-users" style="color: #2563eb; font-size: 2.5rem;"></i>
+                <h3>Expert Support</h3>
+                <p>Access to healthcare professionals and 24/7 technical support.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Healthcare Experience?</h2>
+            <p>Join thousands of users who have already discovered the power of AI-driven healthcare.</p>
+            <div class="cta-buttons">
+                <a href="/login" class="cta-button primary">Get Started Now</a>
+                <a href="/contact" class="cta-button secondary">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Footer -->
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Smart Healthcare Hub</h3>
+                <p>Revolutionizing healthcare with AI-powered solutions and real-time monitoring for better patient outcomes.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Our Services</h4>
+                <ul>
+                    <li><a href="/monitor">Health Monitoring</a></li>
+                    <li><a href="/predict">Disease Prediction</a></li>
+                    <li><a href="/food">Diet Planning</a></li>
+                    <li><a href="/chatbot">AI Assistant</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> support@smarthealthcarehub.com</li>
+                    <li><i class="fas fa-location-dot"></i> 123 Health Street, Medical District</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Smart Healthcare Hub. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/sitemap">Sitemap</a>
+            </div>
+        </div>
     </footer>
-    <footer>
-        <p>&copy; 2025 Health Monitor. All rights reserved.</p>
-    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+        });
+
+        // Animate elements on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.feature-card, .benefit-card, .testimonial-card, .hero-content, .section-header');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('animate');
+                }
+            });
+        };
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Initialize animations
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Stats counter animation
+        const animateValue = (obj, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // Initialize stat counters on scroll
+        const observeStats = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const stats = entry.target.querySelectorAll('.stat-number');
+                    stats.forEach(stat => {
+                        const value = parseInt(stat.innerText);
+                        if (!isNaN(value)) {
+                            animateValue(stat, 0, value, 2000);
+                        }
+                    });
+                    observeStats.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observe hero stats section
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) {
+            observeStats.observe(heroStats);
+        }
+    </script>
 </body>
 </html>
