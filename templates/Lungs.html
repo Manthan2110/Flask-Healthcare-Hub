@@ -3,30 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pneumonia Detection</title>
+    <title>Pneumonia Detection - Smart Healthcare Hub</title>
     <link rel="stylesheet" href="static/App.css">
-    <style>
-        #preview {
-            display: block;
-            margin: 20px auto;
-            max-width: 350px;
-            max-height: 300px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-        }
-        .result-box {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: 500;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
     <header>
         <div class="logo-title-container">
             <h1 id="health_monitor">
-                <img src="static/Images/logo.png" id="nav_logo">
+                <img src="static/Images/logo.png" id="nav_logo" alt="Smart Healthcare Hub Logo">
                 <span class="title-text">SMART HEALTHCARE HUB</span>
             </h1>
         </div>
@@ -39,43 +26,183 @@
                 <li><a href="/about">About</a></li>
             </ul>
             <div id="Login1">
-                <div id="Login"><a href="/login"> Login </a></div>
+                <div id="Login"><a href="/login">Login</a></div>
             </div>
         </nav>
     </header>
 
-    <h1 style="color: green;">Pneumonia Detection</h1>
-    <section id="prediction-pneumonia">
-        <form id="pneumoniaForm" action="/pneumonia" method="post" enctype="multipart/form-data">
-            <h2>Upload Chest X-Ray</h2>
-            <p>
-                Pneumonia is a lung infection that can be life-threatening if untreated. <br>
-                It causes inflammation in the air sacs, which may fill with fluid. <br>
-                Early detection is key. This tool uses deep learning to analyze chest X-ray images and detect pneumonia risk.
-            </p>
-            <input type="file" name="file" id="file" accept="image/*" required><br><br><br><br>
-            <button type="submit">🫁 Predict Pneumonia</button>
-        </form>
-
-        <!-- Preview -->
-        <div id="preview-container">
-            <h3>Uploaded Image:</h3>
-            <img id="preview" src="" alt="Uploaded Image Preview" style="max-width:300px; display:none; border:1px solid #ccc; border-radius:10px; margin-top:10px;">
-        </div>
-
-        <div id="result" class="result-box">
-            <div class="result-content">
-                <div class="default-text">🫁 Result will be displayed here</div>
+    <!-- Hero Section -->
+    <section class="lungs-hero">
+        <div class="hero-content">
+            <h1>AI-Powered Pneumonia Detection</h1>
+            <p>Using advanced deep learning algorithms to analyze chest X-rays and detect pneumonia with high accuracy. Early detection is crucial for effective treatment and better patient outcomes.</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">96%</span>
+                    <span class="stat-label">Detection Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Instant Analysis</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">AI</span>
+                    <span class="stat-label">Powered Detection</span>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Information Cards -->
+    <section class="info-cards">
+        <div class="info-card">
+            <i class="fas fa-lungs"></i>
+            <h3>Early Detection</h3>
+            <p>Rapid analysis of chest X-rays for timely diagnosis</p>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-brain"></i>
+            <h3>Deep Learning</h3>
+            <p>Advanced AI algorithms trained on medical datasets</p>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-hospital-user"></i>
+            <h3>Patient Care</h3>
+            <p>Supporting better healthcare decisions</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section id="prediction-pneumonia" class="prediction-section">
+        <div class="form-container">
+            <h2><i class="fas fa-lungs-virus"></i> Pneumonia Detection Tool</h2>
+            <p class="section-description">
+                Upload a chest X-ray image for instant pneumonia risk assessment. Our AI model analyzes the image 
+                for signs of infection and inflammation in the lungs, helping with early detection and diagnosis.
+            </p>
+
+            <form id="pneumoniaForm" action="/pneumonia" method="post" enctype="multipart/form-data">
+                <div class="upload-container">
+                    <div class="upload-box">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Upload X-Ray Image</h3>
+                        <p>Drag and drop or click to select</p>
+                        <input type="file" name="file" id="file" accept="image/*" required>
+                    </div>
+                    <div class="preview-box">
+                        <h3>Image Preview</h3>
+                        <img id="preview" src="" alt="X-Ray Preview" style="display:none;">
+                        <p class="preview-help">Selected image will appear here</p>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-microscope"></i>
+                    Analyze X-Ray
+                </button>
+            </form>
+
+            <div id="result" class="result-container">
+                <div class="result-content">
+                    <div class="default-text">
+                        <i class="fas fa-spinner"></i>
+                        Results will appear here after analysis
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Information -->
+    <section class="info-section">
+        <h2>Understanding Pneumonia</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <h3><i class="fas fa-exclamation-circle"></i> Symptoms</h3>
+                <ul>
+                    <li>Chest pain when breathing/coughing</li>
+                    <li>Confusion or changes in mental awareness</li>
+                    <li>Cough with phlegm</li>
+                    <li>Fatigue and weakness</li>
+                    <li>Fever, sweating, and chills</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <h3><i class="fas fa-shield-virus"></i> Prevention</h3>
+                <ul>
+                    <li>Get vaccinated</li>
+                    <li>Practice good hygiene</li>
+                    <li>Don't smoke</li>
+                    <li>Keep your immune system strong</li>
+                    <li>Seek early medical attention</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+        <!-- Modern Footer -->
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>Smart Healthcare Hub combines AI technology with healthcare expertise to provide you with the best possible health monitoring and diagnostic solutions.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/features">Our Features</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Healthcare Ave, Medical District</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> support@healthmonitor.com</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="http://linkedin.com/in/manthanjadav" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="http://github.com/Manthan2110" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://manthan2110.github.io/Portfolio/" aria-label="Portfolio"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:manthanjadav746@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Smart Healthcare Hub. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/terms">Terms of Service</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/cookies">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
     const form = document.getElementById('pneumoniaForm');
     const resultBox = document.getElementById('result');
     const fileInput = document.getElementById('file');
+    const scrollIndicator = document.getElementById('scrollIndicator');
 
-    // preview
+    // Scroll Progress Indicator
+    window.onscroll = function() {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+        scrollIndicator.style.width = scrolled + "%";
+    };
+
+    // Image Preview
     fileInput.addEventListener("change", function(event) {
         let file = event.target.files[0];
         if (file) {
@@ -84,12 +211,13 @@
                 let preview = document.getElementById("preview");
                 preview.src = e.target.result;
                 preview.style.display = "block";
+                document.querySelector('.preview-help').style.display = 'none';
             };
             reader.readAsDataURL(file);
         }
     });
 
-    // submit
+    // Form Submission
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         if (!fileInput.files[0]) {
