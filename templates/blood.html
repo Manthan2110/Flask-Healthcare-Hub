@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Group Detection - Smart Healthcare Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='App.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='blood.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <header>
+        <div class="logo-title-container">
+            <h1 id="health_monitor">
+                <img src="{{ url_for('static', filename='Images/logo.png') }}" id="nav_logo" alt="Smart Healthcare Hub Logo">
+                <span class="title-text">SMART HEALTHCARE HUB</span>
+            </h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/chatbot">Chatbot</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+            <div id="Login1">
+                <div id="Login"><a href="/login">Login</a></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="blood-hero">
+        <div class="hero-content">
+            <h1>Blood Group Detection from Fingerprint</h1>
+            <p>Using advanced machine learning algorithms to identify blood groups through fingerprint analysis. This innovative technology provides a quick and non-invasive way to determine blood types.</p>
+        </div>
+    </section>
+
+    <div class="blood-container">
+        <div class="blood-form-section">
+            <h2><i class="fas fa-fingerprint"></i> Blood Group Detection</h2>
+            <form id="bloodGroupForm">
+                <div class="blood-form-group">
+                    <label for="name"><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="blood-form-group">
+                    <label for="age"><i class="fas fa-calendar"></i> Age</label>
+                    <input type="number" id="age" name="age" placeholder="Enter your age" min="1" max="120" required>
+                </div>
+
+                <div class="blood-form-group">
+                    <label for="gender"><i class="fas fa-venus-mars"></i> Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="" disabled selected>Select your gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="blood-form-group">
+                    <label for="fingerprint"><i class="fas fa-fingerprint"></i> Upload Fingerprint Image</label>
+                    <input type="file" id="fingerprint" name="fingerprint" accept="image/*" required>
+                </div>
+
+                <div class="preview-container">
+                    <h3>Fingerprint Preview</h3>
+                    <img id="fingerprintPreview" src="#" alt="Fingerprint Preview">
+                </div>
+
+                <button type="submit">
+                    <i class="fas fa-search"></i>
+                    Detect Blood Group
+                </button>
+            </form>
+        </div>
+
+        <div class="result-section" id="resultSection" style="display: none;">
+            <h2><i class="fas fa-vial"></i> Detection Result</h2>
+            <div id="resultTableBody"></div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('bloodGroupForm');
+        const resultSection = document.getElementById('resultSection');
+        const resultTableBody = document.getElementById('resultTableBody');
+        const fingerprintInput = document.getElementById('fingerprint');
+        const fingerprintPreview = document.getElementById('fingerprintPreview');
+        const scrollIndicator = document.getElementById('scrollIndicator');
+
+        // Create uploads directory if it doesn't exist
+        fetch('/create_uploads', { method: 'POST' }).catch(console.error);
+
+        // Scroll Progress Indicator
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            scrollIndicator.style.width = scrolled + "%";
+        };
+
+        // Preview fingerprint image
+        fingerprintInput.addEventListener('change', function(e) {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    fingerprintPreview.src = e.target.result;
+                    fingerprintPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (!fingerprintInput.files[0]) {
+                alert('Please select a fingerprint image first.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('fingerprint', fingerprintInput.files[0]);
+
+            // Show loading state
+            resultSection.style.display = 'block';
+            resultTableBody.innerHTML = `
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    Analyzing fingerprint...
+                </div>
+            `;
+
+            fetch('/predict_blood_group', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                resultTableBody.innerHTML = `
+                    <table>
+                        <tr>
+                            <td><strong>Name</strong></td>
+                            <td>${document.getElementById('name').value}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Age</strong></td>
+                            <td>${document.getElementById('age').value}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gender</strong></td>
+                            <td>${document.getElementById('gender').value}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fingerprint</strong></td>
+                            <td><img src="${fingerprintPreview.src}" alt="Fingerprint"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Blood Group</strong></td>
+                            <td><span class="blood-group">${data.blood_group}</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Confidence</strong></td>
+                            <td>${data.confidence}%</td>
+                        </tr>
+                    </table>
+                `;
+                resultSection.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                resultTableBody.innerHTML = `
+                    <div class="error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        An error occurred while processing your request. Please try again.
+                    </div>
+                `;
+            });
+        });
+    });
+    </script>
+
+        <!-- Modern Footer -->
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Smart Healthcare Hub</h3>
+                <p>Revolutionizing healthcare with AI-powered solutions and real-time monitoring for better patient outcomes.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Our Services</h4>
+                <ul>
+                    <li><a href="/monitor">Health Monitoring</a></li>
+                    <li><a href="/predict">Disease Prediction</a></li>
+                    <li><a href="/food">Diet Planning</a></li>
+                    <li><a href="/chatbot">AI Assistant</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> support@smarthealthcarehub.com</li>
+                    <li><i class="fas fa-location-dot"></i> 123 Health Street, Medical District</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Smart Healthcare Hub. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/sitemap">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
