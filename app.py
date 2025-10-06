@@ -2,12 +2,12 @@ from flask import Flask, request, jsonify, render_template, send_from_directory
 import numpy as np
 import pandas as pd
 from tensorflow.keras.applications.vgg19 import preprocess_input as vgg19_preprocess
-# from tensorflow import keras
 import joblib
 import pickle
 from datetime import datetime
 from tensorflow.keras.models import load_model
-from tensorflow.keras.utils import load_img, img_to_array
+from tensorflow.keras.utils import load_img, img_to_array, save_img 
+import ssl
 import os
 from flask_cors import CORS
 from sklearn.preprocessing import StandardScaler
@@ -55,6 +55,7 @@ parkinsons_model = pickle.load(open('models/parkinsons_model.pkl', 'rb'))
 breast_cancer_model = pickle.load(open('models/breast_cancer_model.pkl', 'rb'))
 model = joblib.load("models/Random_forest_model.pkl")
 Symptoms_model = pickle.load(open('models/svc.pkl', 'rb'))
+blood_group_model = pickle.load(open('models/blood_grp_detection.pkl', 'rb'))
 # brain_model = load_model("models/brain_model.keras", safe_mode=False, compile=False)
 # skin_cancer_model = keras.models.load_model("models/skin_cancer_cnn_fixed.keras", compile=False)
 
@@ -623,8 +624,70 @@ def liver_predict():
         })
     except Exception as e:
         return jsonify({"error": f"Liver prediction failed: {str(e)}"}), 400
+    
+
+# -----------------------------(Blood Group Detection)----------------------------------- #
+# Disable SSL verification (if needed)
+ssl._create_default_https_context = ssl._create_unverified_context
+
+# Define allow file types
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'bmp'}
+
+#function to check allowed file types
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS 
+
+@app.route('/blood')
+def blood():
+    return render_template('blood.html')
+
+@app.route('/predict_blood_group', methods=['POST'])
+def predict_blood_group():
+    try:
+        if 'fingerprint' not in request.files:
+            return jsonify({'error': 'No fingerprint image uploaded'}), 400
+
+        file = request.files['fingerprint']
+        if file.filename == '':
+            return jsonify({'error': 'No file selected'}), 400
+
+        if not allowed_file(file.filename):
+            return jsonify({'error': 'File type not allowed. Please upload a PNG, JPG, or BMP image'}), 400
+
+        # Create uploads directory if it doesn't exist
+        if not os.path.exists('uploads'):
+            os.makedirs('uploads')
+
+        filename = secure_filename(file.filename)
+        filepath = os.path.join('uploads', filename)
+        file.save(filepath)
+
+        try:
+            # Load and preprocess the image
+            img = load_img(filepath, target_size=(64,64))
+            img_array = img_to_array(img)
+            img_array = np.expand_dims(img_array, axis=0)
+            
+            # Make prediction
+            predictions = blood_group_model.predict(img_array)
+            blood_groups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
+            predicted_class = np.argmax(predictions[0])
+            confidence = float(predictions[0][predicted_class] * 100)
+            
+            return jsonify({
+                'blood_group': blood_groups[predicted_class],
+                'confidence': round(confidence, 2)
+            })
+            
+        finally:
+            # Clean up - remove the uploaded file
+            if os.path.exists(filepath):
+                os.remove(filepath)
+                
+    except Exception as e:
+        print('Error:', str(e))  # Log the error for debugging
+        return jsonify({'error': 'An error occurred during processing'}), 500
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-
