@@ -30,7 +30,8 @@ This project answers a critical question:
 | 🧪 **Disease Predictor**           | Supports early prediction of **Diabetes**, **Heart Disease**, **Cancer**, and **Viral Illnesses** using trained ML models. |
 | 📊 **24x7 Vital Monitor**          | Calculates BMI and gives instant body fitness feedback from basic metrics (height, weight, age).                           |
 | 🥗 **Smart Diet Advisor**          | Recommends personalized food plans based on health goals and conditions.                                                   |
-| 🧬  **Symptoms-Based Predictor**   | Recommends personalized food plans based on health goals and conditions.                                                   |
+| 🩸 **Blood Group Detection**       | Detect Blood Group using fingerprint of patient.                                                                           |
+| 🧬  **Symptoms-Based Predictor**   | Recommends viral disease based on symptoms.                                                                                |
 | 📞 **Contact Us Section**          | Let users reach out for support, queries, or follow-up.                                                                    |
 | 🧭 **Navigation Bar**              | Fully integrated navbar with **Home**, **Features**, **Chatbot**, **Contact**, and **About Us** pages for smooth browsing. |
 | 🔐 **User Authentication**         | Simple and secure login system for personalized access (if enabled).                                                       |
@@ -75,6 +76,7 @@ flask-healthcare-hub/     <br>
 │   ├── monitor.html        <br>
 │   ├── About.html         <br>
 │   ├── App.html        <br>
+│   ├── blood.html        <br>
 │   ├── Contact.html         <br>
 │   ├── diabetes.html         <br>
 │   ├── Feature.html         <br>
@@ -96,6 +98,7 @@ flask-healthcare-hub/     <br>
 ├── models/                 # Pre-trained ML Model Files (.pkl) <br>
 │   ├── diabetes_model.pkl <br>
 │   ├── heart_disease_model.pkl <br>
+│   ├── blood_grp_detection.pkl <br>
 │   ├── breast_cancer_model <br>
 │   ├── parkinsons_cancer_model <br>
 │   ├── Random_forest_model <br>
