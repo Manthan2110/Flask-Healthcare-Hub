@@ -3,73 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disease Prediction</title>
+    <title>Diabetes Risk Assessment - Smart Healthcare Hub</title>
     <link rel="stylesheet" href="static/App.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
     <header>
-        <h1>Diabetes Prediction</h1>
+        <div class="logo-title-container">
+            <h1 id="health_monitor">
+                <img src="static/Images/logo.png" id="nav_logo" alt="Smart Healthcare Hub Logo">
+                <span class="title-text">SMART HEALTHCARE HUB</span>
+            </h1>
+        </div>
         <nav>
             <ul>
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="About.html">About</a></li>
-                <li><a href="Feature.html">Features</a></li>
-                <li><a href="Monitor.html">Real-Time Tracking</a></li>
-                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/chatbot">Chatbot</a></li>
+                <li><a href="/about">About</a></li>
             </ul>
+            <div id="Login1">
+                <div id="Login"><a href="/login">Login</a></div>
+            </div>
         </nav>
     </header>
 
-    </header>
-
-    <section id="prediction-diabetes">
-        <h2>Enter Patient Details</h2>
-        <p>
-            This tool uses machine learning to predict diabetes risk based on medical indicators.
-            Fill in the values below to test the result.
-        </p>
-        <form id="diabetesForm" action="/diabetes" method="post">
-            <div class="metrics-grid-diabetes">
-                <div class="metric">
-                    <h3>Enter No. of Pregnancies</h3>
-                    <input type="number" step="1" name="pregnancies" placeholder="Pregnancies" required>
+    <!-- Hero Section -->
+    <section class="diabetes-hero">
+        <div class="hero-content">
+            <h1>AI-Powered Diabetes Risk Assessment</h1>
+            <p>Using advanced machine learning algorithms to predict diabetes risk based on clinical indicators. Early detection can make a significant difference in managing diabetes effectively.</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Accuracy Rate</span>
                 </div>
-                <div class="metric">
-                    <h3>Enter Glucose Level</h3>
-                    <input type="number" step="1" name="glucose" placeholder="Glucose Level (mg/dL)" required>
+                <div class="stat-item">
+                    <span class="stat-number">8+</span>
+                    <span class="stat-label">Key Indicators</span>
                 </div>
-                <div class="metric">
-                    <h3>Enter Blood Pressure</h3>
-                    <input type="number" step="1" name="blood_pressure" placeholder="Blood Pressure (mm Hg)" required>
-                </div>
-                <div class="metric">
-                    <h3>Enter Skin Thickness</h3>
-                    <input type="number" step="1" name="skin_thickness" placeholder="Skin Thickness (mm)" required>
-                </div>
-                <div class="metric">
-                    <h3>Enter Insulin Level</h3>
-                    <input type="number" step="1" name="insulin" placeholder="Insulin Level (mu U/mL)" required>
-                </div>
-                <div class="metric">
-                    <h3>Enter Body Mass Index</h3>
-                    <input type="number" step="0.01" name="bmi" placeholder="Body Mass Index (BMI)" required>
-                </div>
-                <div class="metric">
-                    <h3>Enter Diabetes Pedigree Function</h3>
-                    <input type="number" step="0.0001" name="dpf" placeholder="Diabetes Pedigree Function" required>
-                </div>
-                <div class="metric">
-                    <h3>Enter Age</h3>
-                    <input type="number" step="1" name="age" placeholder="Age (years)" required>
+                <div class="stat-item">
+                    <span class="stat-number">2M+</span>
+                    <span class="stat-label">Predictions Made</span>
                 </div>
             </div>
-            <button type="submit" id="calculateBtn">🩺 Predict Diabetes Result</button>
-        </form>
-
-        <div id="result" class="result-box"> Result Will be Display here</div>
+        </div>
     </section>
 
-    <script>
+    <!-- Information Cards -->
+    <section class="info-cards">
+        <div class="info-card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Early Detection</h3>
+            <p>Identify potential diabetes risks before symptoms become severe</p>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Data-Driven</h3>
+            <p>Analysis based on comprehensive medical indicators</p>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-clock"></i>
+            <h3>Instant Results</h3>
+            <p>Get your risk assessment in seconds</p>
+        </div>
+    </section>
+
+    <section id="form-container" class="prediction-section">
+        <div class="form-container">
+            <h1 style="color: blue;">Enter Patient Details</h1>
+            <p>
+                This tool uses machine learning to predict diabetes risk based on medical indicators.
+                Fill in the values below to test the result.
+            </p>
+            <form id="diabetesForm" action="/diabetes" method="post">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Enter No. of Pregnancies</label>
+                        <input type="number" step="1" name="pregnancies" placeholder="Pregnancies" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Glucose Level</label>
+                        <input type="number" step="1" name="glucose" placeholder="Glucose Level (mg/dL)" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Blood Pressure</label>
+                        <input type="number" step="1" name="blood_pressure" placeholder="Blood Pressure (mm Hg)" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Skin Thickness</label>
+                        <input type="number" step="1" name="skin_thickness" placeholder="Skin Thickness (mm)" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Insulin Level</label>
+                        <input type="number" step="1" name="insulin" placeholder="Insulin Level (mu U/mL)" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Body Mass Index</label>
+                        <input type="number" step="0.01" name="bmi" placeholder="Body Mass Index (BMI)" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Diabetes Pedigree Function</label>
+                        <input type="number" step="0.0001" name="dpf" placeholder="Diabetes Pedigree Function" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Age</label>
+                        <input type="number" step="1" name="age" placeholder="Age (years)" required>
+                    </div>
+                </div>
+               <button type="submit" class="submit-button"><i class="fas fa-notes-medical"></i>Predict Diabetes Result</button>
+            </form>
+        </div>
+
+        <div id="result" class="result-box">
+            <div class="result-content">
+                <div class="default-text">
+                    🔬 Result will be displayed here
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Footer -->
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>Smart Healthcare Hub combines AI technology with healthcare expertise to provide you with the best possible health monitoring and diagnostic solutions.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/features">Our Features</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Healthcare Ave, Medical District</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> support@healthmonitor.com</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="http://linkedin.com/in/manthanjadav" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="http://github.com/Manthan2110" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://manthan2110.github.io/Portfolio/" aria-label="Portfolio"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:manthanjadav746@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Smart Healthcare Hub. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/terms">Terms of Service</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/cookies">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+   <script>
     document.getElementById('diabetesForm').addEventListener('submit', function(e) {
         e.preventDefault(); // Prevent form from reloading the page
 
@@ -85,6 +191,9 @@
             age: parseInt(formData.get("age"))
         };
 
+        // Show loading state
+        showLoadingState();
+
         fetch("diabetes", {
             method: "POST",
             headers: {
@@ -95,20 +204,66 @@
         .then(response => response.json())
         .then(result => {
             if (result.prediction !== undefined) {
-                document.getElementById("result").innerHTML = `
-                    <strong>Prediction:</strong> ${result.prediction === 1 ? "Diabetic" : "Not Diabetic"}<br>
-                    <strong>Recommendation:</strong> ${result.recommendation}
-                `;
+                showDiabetesResult(result.prediction, result.recommendation);
             } else {
-                document.getElementById("result").innerHTML = "Error: Could not get a prediction.";
+                showError("Could not get a prediction.");
             }
         })
         .catch(error => {
             console.error("Error:", error);
-            document.getElementById("result").innerHTML = "Something went wrong.";
+            showError("Something went wrong. Please try again.");
         });
     });
-</script>
+
+    function showLoadingState() {
+        const resultDiv = document.getElementById("result");
+        resultDiv.className = 'loading';
+        resultDiv.innerHTML = `
+            <div class="result-content">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">🩺 Analyzing diabetes risk...</div>
+            </div>
+        `;
+    }
+
+    function showDiabetesResult(prediction, recommendation) {
+        const resultDiv = document.getElementById("result");
+        const isDiabetic = prediction === 1;
+        
+        // Use positive class for diabetic (concerning) and negative class for not diabetic (good)
+        resultDiv.className = isDiabetic ? 'positive fade-in' : 'negative fade-in';
+        
+        resultDiv.innerHTML = `
+            <div class="result-content">
+                <div class="prediction-status">
+                    <span class="status-icon">${isDiabetic ? '⚠️' : '✅'}</span>
+                    <strong>${isDiabetic ? 'Diabetes Detected' : 'No Diabetes Detected'}</strong>
+                </div>
+                <div class="recommendation">
+                    <div class="recommendation-title">📋 Medical Recommendation:</div>
+                    <div>${recommendation}</div>
+                </div>
+            </div>
+        `;
+    }
+
+    function showError(message) {
+        const resultDiv = document.getElementById("result");
+        resultDiv.className = 'fade-in';
+        resultDiv.style.background = 'linear-gradient(135deg, #e67e22 0%, #d35400 100%)';
+        resultDiv.innerHTML = `
+            <div class="result-content">
+                <div class="prediction-status">
+                    <span class="status-icon">⚠️</span>
+                    <strong>Error</strong>
+                </div>
+                <div class="recommendation">
+                    <div>${message}</div>
+                </div>
+            </div>
+        `;
+    }
+    </script>
 
 
 </body>
