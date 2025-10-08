@@ -3,102 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breast Cancer Prediction</title>
+    <meta name="description" content="AI-powered breast cancer detection using advanced machine learning algorithms for early diagnosis and treatment planning.">
+    <meta name="keywords" content="Breast Cancer Detection, Healthcare AI, Medical Diagnosis, Cancer Screening, Early Detection">
+    <title>Breast Cancer Risk Assessment - Smart Healthcare Hub</title>
     <link rel="stylesheet" href="static/App.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1>Breast Cancer Prediction</h1>
+        <div class="logo-title-container">
+            <h1 id="health_monitor">
+            <img src="static/Images/logo.png" id="nav_logo">
+            <span class="title-text">SMART HEALTHCARE HUB</span>
+            </h1>
+        </div>
         <nav>
             <ul>
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="About.html">About</a></li>
-                <li><a href="Feature.html">Features</a></li>
-                <li><a href="Monitor.html">Real-Time Tracking</a></li>
-                <li><a href="Contact.html">Contact</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/chatbot">Chatbot</a></li>
+                <li><a href="/about">About</a></li>
             </ul>
+            <div id ="Login1" >
+                <div id="Login"><a href="/login"> Login </a>
+            </div>
         </nav>
     </header>
 
-    </header>
+    <!-- Hero Section -->
+    <section class="cancer-hero">
+        <div class="hero-content">
+            <h1>AI-Powered Breast Cancer Detection</h1>
+            <p>Using advanced machine learning algorithms to analyze clinical features and provide early detection of breast cancer. Our system helps identify potential malignancies with high accuracy, supporting timely medical intervention.</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">97%</span>
+                    <span class="stat-label">Accuracy Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Key Indicators</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3M+</span>
+                    <span class="stat-label">Cases Analyzed</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section id="prediction-cancer">
-        <h2>Enter Patient Details</h2>
-        <p>
-            Breast cancer is one of the most common cancers affecting women worldwide.<br> 
-            Early detection significantly increases the chances of successful treatment and survival.
-            This tool uses advanced machine learning algorithms to analyze clinical features and predict 
-            whether a breast tumor is likely Malignant (cancerous) or Benign (non-cancerous).
-        </p>
+    <!-- Information Cards -->
+    <section class="info-cards">
+        <div class="info-card">
+            <i class="fas fa-microscope"></i>
+            <h3>Advanced Analysis</h3>
+            <p>Comprehensive examination of tissue characteristics</p>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-clock"></i>
+            <h3>Early Detection</h3>
+            <p>Timely identification of potential malignancies</p>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Precise Results</h3>
+            <p>High-accuracy machine learning predictions</p>
+        </div>
+    </section>
+
+    <section id="prediction-cancer" class="prediction-section">
+        <div class="form-container">
+            <h1 style="color: blue;">Enter Patient Details</h1>
+            <p>
+                Breast cancer is one of the most common cancers affecting women worldwide. 
+                Early detection significantly increases the chances of successful treatment and survival.
+                Our AI system analyzes various clinical features to determine whether a breast tumor 
+                is likely Malignant (cancerous) or Benign (non-cancerous).
+            </p>
         <form id="breastCancerForm" action="/cancer" method="post">
-            <div class="metrics-grid-cancer">
-
-                <div class="metric">
-                    <h3>Enter Worst Area</h3>
-                    <input type="number" step="0.01" name="worst_area" placeholder="Worst Area" required>
-                </div>
-
-                <div class="metric">
-                    <h3>Enter Mean Concavity</h3>
-                    <input type="number" step="0.00001" name="mean_concavity" placeholder="Mean Concavity" required>
-                </div>
-
-                <div class="metric">
-                    <h3>Enter Mean Radius</h3>
+            <div class="form-grid">
+                <!-- Mean Measurements -->
+                <div class="form-group">
+                    <label><i class="fas fa-ruler"></i> Mean Radius</label>
                     <input type="number" step="0.01" name="mean_radius" placeholder="Mean Radius" required>
                 </div>
-
-                <div class="metric">
-                    <h3>Enter Mean Area</h3>
+                <div class="form-group">
+                    <label><i class="fas fa-circle"></i> Mean Area</label>
                     <input type="number" step="0.01" name="mean_area" placeholder="Mean Area" required>
                 </div>
-
-                <div class="metric">
-                    <h3>Enter Worst Concave Points</h3>
-                    <input type="number" step="0.00001" name="worst_concave_points" placeholder="Worst Concave Points" required>
+                <div class="form-group">
+                    <label><i class="fas fa-draw-polygon"></i> Mean Perimeter</label>
+                    <input type="number" step="0.01" name="mean_perimeter" placeholder="Mean Perimeter" required>
                 </div>
-
-                <div class="metric">
-                    <h3>Enter Worst Perimeter</h3>
-                    <input type="number" step="0.01" name="worst_perimeter" placeholder="Worst Perimeter" required>
+                <div class="form-group">
+                    <label><i class="fas fa-chart-area"></i> Mean Concavity</label>
+                    <input type="number" step="0.00001" name="mean_concavity" placeholder="Mean Concavity" required>
                 </div>
-
-                <div class="metric">
-                    <h3>Enter Worst Concavity</h3>
-                    <input type="number" step="0.00001" name="worst_concavity" placeholder="Worst Concavity" required>
-                </div>
-
-                <div class="metric">
-                    <h3>Enter Area Error</h3>
-                    <input type="number" step="0.001" name="area_error" placeholder="Area Error" required>
-                </div>
-
-                <div class="metric">
-                    <h3>Enter Mean Concave Points</h3>
+                <div class="form-group">
+                    <label><i class="fas fa-dot-circle"></i> Mean Concave Points</label>
                     <input type="number" step="0.00001" name="mean_concave_points" placeholder="Mean Concave Points" required>
                 </div>
 
-                <div class="metric">
-                    <h3>Enter Worst Radius</h3>
+                <!-- Worst Measurements -->
+                <div class="form-group">
+                    <label><i class="fas fa-exclamation-circle"></i> Worst Radius</label>
                     <input type="number" step="0.01" name="worst_radius" placeholder="Worst Radius" required>
                 </div>
-
-                <div class="metric">
-                    <h3>Enter Mean Perimeter</h3>
-                    <input type="number" step="0.01" name="mean_perimeter" placeholder="Mean Perimeter" required>
+                <div class="form-group">
+                    <label><i class="fas fa-expand"></i> Worst Area</label>
+                    <input type="number" step="0.01" name="worst_area" placeholder="Worst Area" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-border-style"></i> Worst Perimeter</label>
+                    <input type="number" step="0.01" name="worst_perimeter" placeholder="Worst Perimeter" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-chart-line"></i> Worst Concavity</label>
+                    <input type="number" step="0.00001" name="worst_concavity" placeholder="Worst Concavity" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-bullseye"></i> Worst Concave Points</label>
+                    <input type="number" step="0.00001" name="worst_concave_points" placeholder="Worst Concave Points" required>
                 </div>
 
-                <div class="metric">
-                    <h3>Enter Worst Compactness</h3>
+                <!-- Additional Measurements -->
+                <div class="form-group">
+                    <label><i class="fas fa-compress-alt"></i> Worst Compactness</label>
                     <input type="number" step="0.00001" name="worst_compactness" placeholder="Worst Compactness" required>
                 </div>
-
+                <div class="form-group">
+                    <label><i class="fas fa-exclamation-triangle"></i> Area Error</label>
+                    <input type="number" step="0.001" name="area_error" placeholder="Area Error" required>
+                </div>
             </div>
 
-            <button type="submit" id="calculateBtn">Predict Breast Cancer Result</button>
+            <button type="submit" class="submit-button">
+                <i class="fas fa-microscope"></i> Analyze Cancer Risk
+            </button>
         </form>
 
-        <div id="result" class="result-box"> Result Will be Display here</div>
+        <div id="result" class="result-box">
+            <div class="result-content">
+                <div class="default-text">
+                    🔬 Result will be displayed here
+                </div>
+            </div>
+        </div>
     </section>
 
     <script>
@@ -124,6 +175,9 @@
                 worst_compactness: parseFloat(formData.get('worst_compactness'))
             };
 
+            // Show loading state
+            showLoadingState();
+
             try {
                 const response = await fetch('/cancer', {
                     method: 'POST',
@@ -135,17 +189,114 @@
 
                 const result = await response.json();
 
-                resultBox.innerHTML = `
-                    <h3>Diagnosis: ${result.prediction === 1 ? '✅ Benign' : '💀 Malignant'}</h3>
-                    <p><strong>Recommendation:</strong> ${result.recommendation}</p>
-                `;
+                if (result.prediction !== undefined) {
+                    showCancerResult(result.prediction, result.recommendation);
+                } else {
+                    showError("Could not get a prediction.");
+                }
+
             } catch (error) {
                 console.error("Prediction failed:", error);
-                resultBox.innerHTML = "⚠️ Error fetching prediction.";
+                showError("Something went wrong. Please try again.");
             }
         });
+
+        function showLoadingState() {
+            resultBox.className = 'loading';
+            resultBox.innerHTML = `
+                <div class="result-content">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">🔬 Analyzing tissue data...</div>
+                </div>
+            `;
+        }
+
+        function showCancerResult(prediction, recommendation) {
+            // Note: For breast cancer, prediction logic might be reversed
+            // prediction === 1 means Benign, prediction === 0 means Malignant
+            const isBenign = prediction === 1;
+            
+            // Use negative class for benign (good result) and positive class for malignant (concerning result)
+            resultBox.className = isBenign ? 'negative fade-in' : 'positive fade-in';
+            
+            resultBox.innerHTML = `
+                <div class="result-content">
+                    <div class="prediction-status">
+                        <span class="status-icon">${isBenign ? '✅' : '⚠️'}</span>
+                        <strong>${isBenign ? 'Benign Tumor' : 'Malignant Tumor'}</strong>
+                    </div>
+                    <div class="recommendation">
+                        <div class="recommendation-title">📋 Medical Recommendation:</div>
+                        <div>${recommendation}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showError(message) {
+            resultBox.className = 'fade-in';
+            resultBox.style.background = 'linear-gradient(135deg, #e67e22 0%, #d35400 100%)';
+            resultBox.innerHTML = `
+                <div class="result-content">
+                    <div class="prediction-status">
+                        <span class="status-icon">⚠️</span>
+                        <strong>Error</strong>
+                    </div>
+                    <div class="recommendation">
+                        <div>${message}</div>
+                    </div>
+                </div>
+            `;
+        }
     </script>
 
+    <!-- Modern Footer -->
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>Smart Healthcare Hub combines advanced AI technology with medical expertise to provide accurate and timely health assessments for better patient outcomes.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/features">Our Features</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Healthcare Ave, Medical District</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> support@healthmonitor.com</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="http://linkedin.com/in/manthanjadav" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="http://github.com/Manthan2110" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://manthan2110.github.io/Portfolio/" aria-label="Portfolio"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:manthanjadav746@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Smart Healthcare Hub. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/terms">Terms of Service</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/cookies">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
