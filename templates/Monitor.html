@@ -3,64 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-Time Health Tracking</title>
+    <title>BMI & Health Tracker - Smart Healthcare Hub</title>
     <link rel="stylesheet" href="static/App.css">
-    <script defer src="App.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script defer src="static/App.js"></script>
+
+    <style>
+        /* Hero Section */
+        .bmi-hero {
+            position: relative;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(0, 82, 204, 0.85)), url('static/Images/Ai-Health-Tracking.jpeg');
+            background-size: cover;
+            background-position: center;
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .bmi-hero .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* BMI Form */
+        .form-container {
+            background: #f8f9fa;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .submit-button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Result Box */
+        .result-box {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            background: #f1faff;
+            transition: 0.4s ease;
+        }
+
+        .result-box.positive {
+            background: linear-gradient(135deg, #ff6b6b, #d90429);
+            color: white;
+        }
+
+        .result-box.negative {
+            background: linear-gradient(135deg, #38b000, #007200);
+            color: white;
+        }
+
+        .result-content .status-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <!-- Navbar -->
     <header>
-        <h1>Real-Time Health Tracking</h1>
+        <div class="logo-title-container">
+            <h1 id="health_monitor">
+                <img src="static/Images/logo.png" id="nav_logo" alt="Smart Healthcare Hub Logo">
+                <span class="title-text">SMART HEALTHCARE HUB</span>
+            </h1>
+        </div>
         <nav>
             <ul>
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="About.html">About</a></li>
-                <li><a href="Feature.html">Features</a></li>
-                <li><a href="Monitor.html">Real-Time Tracking</a></li>
-                <li><a href="Chatbot.html">Contact</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/chatbot">Chatbot</a></li>
+                <li><a href="/about">About</a></li>
             </ul>
+            <div id="Login1">
+                <div id="Login"><a href="/login">Login</a></div>
+            </div>
         </nav>
     </header>
-    
-    <section id="tracking">
-        <h2>Live Health Metrics</h2>
-        <div class="metric">
-            <h3>Enter Weight (kg)</h3>
-            <input type="number" name="weight" id="weight">
+
+    <!-- Hero Section -->
+    <section class="bmi-hero">
+        <div class="hero-content">
+            <h1>AI-Powered BMI & Health Tracker</h1>
+            <p>Calculate your Body Mass Index and get personalized health insights instantly. Monitor your health metrics and take early action.</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">1M+</span>
+                    <span class="stat-label">BMI Calculations</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Accuracy Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Health Monitoring</span>
+                </div>
+            </div>
         </div>
-        <div class="metric">
-            <h3>Enter Height (cm)</h3>
-            <input type="number" name="height" id="height">
-        </div>
-        <div class="metric">
-            <h3>Enter Age</h3>
-            <input type="number" name="age" id="age">
-        </div>
-        <button id="calculateBtn">Calculate BMI</button>
     </section>
 
-    <p id="output"></p>
-    <p id="condition"></p>
+    <!-- Info Cards -->
+    <section class="info-cards">
+        <div class="info-card">
+            <i class="fas fa-heartbeat"></i>
+            <h3>Track Your Health</h3>
+            <p>Monitor BMI regularly and maintain a healthy lifestyle.</p>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-stethoscope"></i>
+            <h3>Early Detection</h3>
+            <p>Identify potential health issues before they become severe.</p>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-bolt"></i>
+            <h3>Instant Results</h3>
+            <p>Get health condition insights in seconds.</p>
+        </div>
+    </section>
+
+    <!-- BMI Form Section -->
+    <section id="form-container" class="prediction-section">
+        <div class="form-container">
+            <h1 style="color: blue;">BMI Calculator</h1>
+            <p>
+                Enter your basic health details to calculate your Body Mass Index and know your health status instantly.
+            </p>
+            <form id="bmiForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label><i class="fas fa-weight"></i> Enter Weight (kg)</label>
+                        <input type="number" step="0.1" id="weight" placeholder="e.g., 65" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-ruler-vertical"></i> Enter Height (cm)</label>
+                        <input type="number" step="0.1" id="height" placeholder="e.g., 170" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Enter Age</label>
+                        <input type="number" id="age" placeholder="e.g., 25" required>
+                    </div>
+                </div>
+                <button type="button" id="calculateBtn" class="submit-button">
+                    <i class="fas fa-calculator"></i> Calculate BMI
+                </button>
+            </form>
+        </div>
+
+        <div id="result" class="result-box">
+            <div class="result-content">
+                <div class="default-text">
+                    🩺 Result will be displayed here
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>Smart Healthcare Hub uses AI to make healthcare smarter, faster, and more personalized for everyone.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/features">Our Features</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Healthcare Ave</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> support@healthmonitor.com</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="http://linkedin.com/in/manthanjadav"><i class="fab fa-linkedin"></i></a>
+                    <a href="http://github.com/Manthan2110"><i class="fab fa-github"></i></a>
+                    <a href="https://manthan2110.github.io/Portfolio/"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:manthanjadav746@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Smart Healthcare Hub. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/terms">Terms</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/cookies">Cookies</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
         function calculateBMI() {
-            // Get values from inputs
             let age = Number(document.getElementById("age").value);
             let weight = Number(document.getElementById("weight").value);
             let height = Number(document.getElementById("height").value);
 
-            // Check if values are valid
+            const resultDiv = document.getElementById("result");
+
             if (!age || !weight || !height) {
-                document.getElementById("output").innerText = "Please enter valid values.";
-                document.getElementById("condition").innerText = "";
+                resultDiv.className = 'fade-in';
+                resultDiv.innerHTML = `
+                    <div class="result-content">
+                        <div class="prediction-status">
+                            <span class="status-icon">⚠️</span>
+                            <strong>Please enter valid values</strong>
+                        </div>
+                    </div>
+                `;
                 return;
             }
 
-            // Convert height from cm to meters
             let heightInMeters = height / 100;
             let bmi = weight / (heightInMeters * heightInMeters);
             let condition = "";
 
-            // Determine health condition based on BMI and age
             if (age < 18) {
                 if (bmi < 18.5) condition = "Underweight (Consult a doctor for child nutrition)";
                 else if (bmi < 24.9) condition = "Normal weight (Maintain a healthy lifestyle)";
@@ -78,17 +322,24 @@
                 else condition = "Obese (High risk - Seek medical advice)";
             }
 
-            // Display results
-            document.getElementById("output").innerText = `Your BMI: ${bmi.toFixed(2)}`;
-            document.getElementById("condition").innerText = `Condition: ${condition}`;
+            const isHealthy = bmi >= 18.5 && bmi <= 24.9;
+
+            resultDiv.className = isHealthy ? 'negative fade-in' : 'positive fade-in';
+            resultDiv.innerHTML = `
+                <div class="result-content">
+                    <div class="prediction-status">
+                        <span class="status-icon">${isHealthy ? '✅' : '⚠️'}</span>
+                        <strong>Your BMI: ${bmi.toFixed(2)}</strong>
+                    </div>
+                    <div class="recommendation">
+                        <div class="recommendation-title">📋 Health Condition:</div>
+                        <div>${condition}</div>
+                    </div>
+                </div>
+            `;
         }
 
-        // Add event listener for the button
         document.getElementById("calculateBtn").addEventListener("click", calculateBMI);
     </script>
-
-    <footer>
-        <p>&copy; 2025 Health Monitor. All rights reserved.</p>
-    </footer>
 </body>
 </html>
